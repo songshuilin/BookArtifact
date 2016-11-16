@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/scanLocalBooks" android:title="扫描本地书籍" android:icon="@drawable/home_menu_3"/>
+    <item android:id="@+id/wifiPassBook" android:title="WIFI传书" android:icon="@drawable/home_menu_4"/>
+    <item android:id="@+id/feedback" android:title="意见反馈" android:icon="@drawable/home_menu_5"/>
+    <item android:id="@+id/nightMode" android:title="夜间模式" android:icon="@drawable/theme_night"/>
+    <item android:id="@+id/set" android:title="设置" android:icon="@drawable/home_menu_6"/>
+</menu>

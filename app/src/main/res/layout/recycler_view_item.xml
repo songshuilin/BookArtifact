@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:padding="15dp"
+    >
+
+   <ImageView
+       android:scaleType="fitXY"
+    android:id="@+id/novelImg"
+    android:layout_width="60dp"
+    android:layout_height="100dp"
+    android:src="@drawable/default_novel"
+    />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:textSize="22sp"
+        android:layout_toRightOf="@+id/novelImg"
+        android:layout_alignTop="@+id/novelImg"
+        android:id="@+id/novelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小说的标题"
+        />
+
+    <TextView
+        android:layout_alignLeft="@+id/novelTitle"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp"
+       android:layout_alignBottom="@+id/novelImg"
+        android:layout_toRightOf="@+id/novelImg"
+        android:id="@+id/novelAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小说的作者"
+        />
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/novelAuthor"
+        android:id="@+id/novelTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小说的时间"
+        />
+</RelativeLayout>
