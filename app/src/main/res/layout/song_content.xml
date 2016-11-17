@@ -44,8 +44,6 @@
              android:layout_height="wrap_content"
              android:src="@drawable/search"
              />
-
-
      </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
