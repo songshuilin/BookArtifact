@@ -56,6 +56,7 @@ public class NovelChapterListActivity extends AppCompatActivity {
                          public void OnClickItem(View view, NovelChapter chapter) {
                              Toast.makeText(NovelChapterListActivity.this, chapter.toString(), Toast.LENGTH_SHORT).show();
                              Intent intent=new Intent(NovelChapterListActivity.this,ReadChapterActivity.class);
+                             intent.putExtra("path",chapter.getChapterPath());
                              startActivity(intent);
                          }
                      });
