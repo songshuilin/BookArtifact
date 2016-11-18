@@ -27,6 +27,10 @@ import java.util.List;
 import adapter.NovelFragmentAdapter;
 import bean.NovelType;
 import fragment.ListBookFragment;
+import slidingmenuActivity.FeedBackActivity;
+import slidingmenuActivity.LocalBookActivity;
+import slidingmenuActivity.SettingActivity;
+import slidingmenuActivity.WifiTranportActivity;
 import utils.CrawlerData;
 
 /** 作者 : 宋水林
@@ -150,6 +154,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.search:
                 Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+                Intent intent_chen_search=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent_chen_search);
                 break;
             case R.id.usernameImg:
                 Toast.makeText(MainActivity.this, "用户名的头像", Toast.LENGTH_SHORT).show();
@@ -170,14 +176,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()){
             case R.id.scanLocalBooks:
                 Toast.makeText(MainActivity.this, "扫描本地书籍", Toast.LENGTH_SHORT).show();
+                Intent intent_chen_localBooks=new Intent(MainActivity.this, LocalBookActivity.class);
+                startActivity(intent_chen_localBooks);
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.wifiPassBook:
                 Toast.makeText(MainActivity.this, "WIFI传书", Toast.LENGTH_SHORT).show();
+                Intent intent_chen_wifiTranport=new Intent(MainActivity.this, WifiTranportActivity.class);
+                startActivity(intent_chen_wifiTranport);
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.feedback:
                 Toast.makeText(MainActivity.this, "意见反馈", Toast.LENGTH_SHORT).show();
+                Intent intent_chen_feedback=new Intent(MainActivity.this, FeedBackActivity.class);
+                startActivity(intent_chen_feedback);
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.nightMode:
@@ -186,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.set:
                 Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
+                Intent intent_chen_setting=new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent_chen_setting);
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
 

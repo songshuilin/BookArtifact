@@ -3,9 +3,11 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
 
     <application
@@ -24,15 +26,14 @@
         <activity android:name="ui.ReadChapterActivity"/>
         <activity android:name="ui.NovelChapterListActivity"/>
         <activity android:name="ui.NovelDescActivity"/>
-        <activity android:name=".ClickActivity"/>
-        <activity android:name=".DiscoverActivity"/>
-        <activity android:name=".CommunityActivity"/>
-        <activity android:name=".MusicActivity"/>
-        <service android:name="service.MyService">
-            <intent-filter>
-                <action android:name="music_service"/>
-            </intent-filter>
-        </service>
+        <activity android:name=".SearchActivity"/>
+        <activity android:name="slidingmenuActivity.SettingActivity"/>
+        <activity android:name="slidingmenuActivity.DisclaimerActivity"/>
+        <activity android:name="slidingmenuActivity.FeedBackActivity"/>
+        <activity android:name="slidingmenuActivity.JoinUsActivity"/>
+        <activity android:name="slidingmenuActivity.LocalBookActivity"/>
+        <activity android:name="slidingmenuActivity.LoginActivity"/>
+        <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
 
     </application>
 

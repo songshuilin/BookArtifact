@@ -13,6 +13,7 @@ import java.util.List;
 
 import bean.NovelBean;
 import bean.NovelChapter;
+import bean.NovelChapterContent;
 import bean.NovelDesc;
 import bean.NovelType;
 
@@ -27,7 +28,7 @@ public class CrawlerData {
     private static List<NovelBean> list = null;
     private static List<NovelType> novelTypeList;
     private static List<NovelChapter> novelChapters;
-
+    private static List<NovelChapterContent> novelChapterContentList;
     /**
      * 爬取一种类型的全部小说
      *
@@ -177,7 +178,12 @@ public class CrawlerData {
         }
         return null;
     }
-
+    /**
+     * 获取小说全部的章节
+     *
+     * @param path
+     * @return
+     */
     public static List<NovelChapter> getNovelChapters(String path) {
         try {
             Document document = Jsoup.connect(path).get();
@@ -190,8 +196,8 @@ public class CrawlerData {
             novelChapters = new ArrayList<>();
             for (Element e : lis) {
                 NovelChapter chapter = new NovelChapter();
-                Elements a=e.getElementsByTag("a");
-                String chapterDesc =  a.get(0).attr("title");
+                Elements a = e.getElementsByTag("a");
+                String chapterDesc = a.get(0).attr("title");
                 chapter.setChapterDesc(chapterDesc);
                 String chapterPath = a.get(0).attr("href");
                 chapter.setChapterPath(chapterPath);
@@ -207,5 +213,35 @@ public class CrawlerData {
         return null;
     }
 
+
+    /**
+     * 获取小说的的章节全部内容
+     *
+     * @return
+     */
+    public static NovelChapterContent getNovelChapterContent(String path) {
+        try {
+            Document document = Jsoup.connect(path).get();
+            Elements readcontainers = document.getElementsByClass("readcontainer");
+            Elements readmains = readcontainers.get(0).getElementsByClass("readmain");
+            Elements readmain_inners = readmains.get(0).getElementsByClass("readmain_inner");
+            if (readmain_inners == null) {
+                return null;
+            }
+            NovelChapterContent novelChapterContent = new NovelChapterContent();
+            String chapterName = readmain_inners.get(0).getElementsByClass("chapter_title").text();
+            novelChapterContent.setNovelChapterName(chapterName);
+
+            String chapterContent = readmain_inners.get(0).getElementsByClass("chapter_content").html();
+            novelChapterContent.setNovelChapterContent(chapterContent);
+
+            return  novelChapterContent;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
 
 }
