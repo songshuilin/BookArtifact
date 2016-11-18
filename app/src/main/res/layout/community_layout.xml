@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这是社区模块的UI，根据id: lay_music、lay_discuss、lay_share、lay_saoyisao、lay_girl来添加点击事件-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 社区的头部-->
+    <include layout="@layout/head_layout"/>
+    <!-- 本地音乐的相对布局框架-->
+    <RelativeLayout
+        android:id="@+id/lay_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center_vertical">
+        <!-- 本地音乐图标-->
+        <ImageView
+            android:id="@+id/tweet"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_tweet_enter"/>
+        <!--本地音乐 -->
+        <TextView
+            android:id="@+id/tv_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本地音乐"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/tweet"/>
+        <!-- 下划线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_music"
+            android:layout_alignLeft="@id/tv_music"
+            android:layout_marginTop="20dp"
+            android:background="#9A9496"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="公共社区"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#9A9496"/>
+    <!-- 综合讨论区的相对布局框架-->
+    <RelativeLayout
+        android:id="@+id/lay_discuss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center_vertical">
+        <!-- 综合讨论区图标-->
+        <ImageView
+            android:id="@+id/discu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/discuss_section"/>
+        <!--综合讨论区 -->
+        <TextView
+            android:id="@+id/tv_discu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="综合讨论区"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/discu"/>
+        <!-- 下划线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_discu"
+            android:layout_alignLeft="@id/tv_discu"
+            android:layout_marginTop="20dp"
+            android:background="#F6F7FC"/>
+    </RelativeLayout>
+    <!-- 分享本软件的相对布局框架-->
+    <RelativeLayout
+        android:id="@+id/lay_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:gravity="center_vertical">
+        <!-- 分享本软件图标-->
+        <ImageView
+            android:id="@+id/com"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/comment_section"/>
+        <!--分享本软件-->
+        <TextView
+            android:id="@+id/tv_com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享本软件"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/com"/>
+        <!-- 下划线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_com"
+            android:layout_alignLeft="@id/tv_com"
+            android:layout_marginTop="20dp"
+            android:background="#9A9496"/>
+    </RelativeLayout>
+    <!-- 扫一扫的相对布局框架-->
+    <RelativeLayout
+        android:id="@+id/lay_saoyisao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center_vertical">
+        <!-- 扫一扫图标-->
+        <ImageView
+            android:id="@+id/help"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/helper_section"/>
+        <!--扫一扫 -->
+        <TextView
+            android:id="@+id/tv_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="扫一扫"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/help"/>
+        <!-- 下划线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_help"
+            android:layout_alignLeft="@id/tv_help"
+            android:layout_marginTop="20dp"
+            android:background="#F6F7FC"/>
+    </RelativeLayout>
+    <!-- 智能客服的相对布局框架-->
+    <RelativeLayout
+        android:id="@+id/lay_girl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:gravity="center_vertical">
+        <!-- 智能客服图标-->
+        <ImageView
+            android:id="@+id/gir"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/girl_section"/>
+        <!--智能客服 -->
+        <TextView
+            android:id="@+id/tv_gir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="智能客服"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/gir"/>
+        <!-- 下划线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_gir"
+            android:layout_alignLeft="@id/tv_gir"
+            android:layout_marginTop="20dp"
+            android:background="#9A9496"/>
+    </RelativeLayout>
+</LinearLayout>

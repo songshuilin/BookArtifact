@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <!-- 中间音乐列表展示-->
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="1dp"
+        android:divider="#9A9496"
+        android:background="@drawable/bg_snow_blur">
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:background="#A39F9E">
+        <!-- 起始时间-->
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="15sp"
+            android:textColor="#fff"/>
+        <!-- 播放按钮-->
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/audiobook_play_normal"/>
+        <!-- 结束时间-->
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btn_play"
+            android:layout_marginRight="20dp"
+            android:text="00:00"
+            android:textSize="15sp"
+            android:textColor="#fff"/>
+        <!-- 播放进度条-->
+        <SeekBar
+            android:id="@+id/sb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/start_time"
+            android:layout_marginTop="10dp"
+            android:layout_alignRight="@id/end_time"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6A6A68">
+        <!-- 按列表循环播放按钮-->
+        <Button
+            android:id="@+id/loop"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/play_icn_loop"/>
+        <!-- 随机播放按钮-->
+        <Button
+            android:id="@+id/shuffle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/play_icn_shuffle"/>
+        <!-- 单曲循环播放按钮-->
+        <Button
+            android:id="@+id/single"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/play_icn_one"/>
+    </RelativeLayout>
+</LinearLayout>
