@@ -1,6 +1,7 @@
 package com.example.edu.bookartifact;
 
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -135,12 +136,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.song_find:
+                Intent intent=new Intent(MainActivity.this,DiscoverActivity.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "发现", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.song_afterBook:
                 Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.song_community:
+                Intent intent3=new Intent(MainActivity.this,CommunityActivity.class);
+                startActivity(intent3);
                 Toast.makeText(MainActivity.this, "社区", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.search:
