@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--显示历史记录的item-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:orientation="horizontal">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:src="@drawable/search_history_mark_light"/>
+        <TextView
+            android:id="@+id/tv_history_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"
+            android:text="美女"/>
+    </LinearLayout>
