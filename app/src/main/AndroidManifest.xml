@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="ui.ReadChapterActivity"/>
+        <activity android:name="ui.ReadChapterActivity"
+            />
         <activity android:name="ui.NovelChapterListActivity"/>
         <activity android:name="ui.NovelDescActivity"/>
         <activity android:name=".SearchActivity"/>

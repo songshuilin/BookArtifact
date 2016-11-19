@@ -30,23 +30,31 @@ public class NovelChapterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_novel_chapter, container, false);
-        initViews();
+
+        if(view==null){
+            view= inflater.inflate(R.layout.fragment_novel_chapter, container, false);
+            initViews();
 //        Calendar calendar=Calendar.getInstance();
 //        int hour=calendar.get(Calendar.HOUR_OF_DAY);
-        SimpleDateFormat format=new SimpleDateFormat("HH:mm");
-        Date date=new Date();
-        String time=format.format(date);//获取当前时间
-        Bundle bundle = getArguments();
-        String title=bundle.getString("title");
-        String content=bundle.getString("content");
-        int curPage=bundle.getInt("curpage");
-        int totalPage=bundle.getInt("totalpage");
-        mChapterName.setText(title);
-        mChapterTotalPage.setText("/"+totalPage);
-        mChapterCurPage.setText(""+curPage);
-        mChapterContent.setText(Html.fromHtml(content));
-        mChapterTime.setText(time);
+            SimpleDateFormat format=new SimpleDateFormat("HH:mm");
+            Date date=new Date();
+            String time=format.format(date);//获取当前时间
+            Bundle bundle = getArguments();
+            String title=bundle.getString("title");
+            String content=bundle.getString("content");
+            int curPage=bundle.getInt("curpage");
+            int totalPage=bundle.getInt("totalpage");
+            mChapterName.setText(title);
+            mChapterTotalPage.setText("/"+totalPage);
+            mChapterCurPage.setText(""+curPage);
+            mChapterContent.setText(Html.fromHtml(content));
+            mChapterTime.setText(time);
+        }
+        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+        ViewGroup parent = (ViewGroup) view.getParent();
+        if (parent != null) {
+            parent.removeView(view);
+        }
         return view;
     }
 
