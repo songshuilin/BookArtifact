@@ -66,10 +66,7 @@ public class ChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
-
         init();
-
-
     }
 
     /**
