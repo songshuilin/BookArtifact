@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="chatNameSize">14sp</dimen>
+    <dimen name="portraitSize">60dp</dimen>
+    <dimen name="chat_tv_padding">10dp</dimen>
+    <dimen name="bottom_edit">60dp</dimen>
+    <dimen name="bottom_edittext_size">24sp</dimen>
+    <dimen name="bottom_edit_heigh">40dp</dimen>
+    <dimen name="head_height">70dp</dimen>
 </resources>

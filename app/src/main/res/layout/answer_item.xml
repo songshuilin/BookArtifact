@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@id/tv_chat_name"
+            android:layout_marginLeft="@dimen/portraitSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/chatNameSize"
+            android:text="@string/answerName"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@id/iv_chat_icon"
+                android:layout_width="@dimen/portraitSize"
+                android:layout_height="@dimen/portraitSize"
+                android:src="@drawable/answer_girl_icon"/>
+            <TextView
+                android:id="@id/tv_chat_content"
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/chat_tv_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/answer_tv_bg_normal"
+                android:text="@string/answer_helloword"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

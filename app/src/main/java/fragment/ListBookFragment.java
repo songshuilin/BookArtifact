@@ -217,7 +217,9 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
                         Toast.makeText(getActivity(), "刷新成功！", Toast.LENGTH_SHORT).show();
                     }
                 }
-                oldList.clear();//刷新前清空
+                if (oldList != null) {
+                    oldList.clear();//刷新前清空
+                }
                 getNovelNewList();
             }
         }, 2000);

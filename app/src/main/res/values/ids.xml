@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="rv_chat"/>
+    <item name="tv_chat_name" type="id"/>
+    <item name="iv_chat_icon" type="id"/>
+    <item name="tv_chat_content" type="id"/>
+    <item name="et_bottom_content" type="id"/>
+    <item name="tv_bottom_send" type="id"/>
+    <item name="chat_error_what" type="id"/>
+
+</resources>

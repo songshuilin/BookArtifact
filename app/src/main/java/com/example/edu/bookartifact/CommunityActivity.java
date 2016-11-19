@@ -44,11 +44,13 @@ public class CommunityActivity extends Activity {
                     break;
                 case  R.id.lay_share:
 
+
                     break;
                 case  R.id.lay_saoyisao:
 
                     break;
                 case  R.id.lay_girl:
+                    startActivity(new Intent(CommunityActivity.this,ChatActivity.class));
 
                     break;
                 case  R.id.back:
