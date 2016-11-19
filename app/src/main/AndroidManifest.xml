@@ -11,7 +11,6 @@
 
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -36,10 +35,11 @@
         <activity android:name="slidingmenuActivity.LocalBookActivity"/>
         <activity android:name="slidingmenuActivity.LoginActivity"/>
         <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
-        <activity android:name=".DiscoverActivity"/>
         <activity android:name=".CommunityActivity"/>
         <activity android:name=".ClickActivity"/>
-        <activity android:name=".ChatActivity"/>
+        <activity android:name=".DiscoverActivity"/>
+        <activity android:name=".MusicActivity"/>
+     
 
 
     </application>
