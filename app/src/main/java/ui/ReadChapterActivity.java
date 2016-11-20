@@ -76,7 +76,7 @@ public class ReadChapterActivity extends AppCompatActivity {
                     }
                     adapter = new NovelFragmentAdapter(getSupportFragmentManager(), fragments);
                     mViewPage.setAdapter(adapter);
-                    //mViewPage.setCurrentItem(0);
+                    mViewPage.setCurrentItem(0);
                     allTotalPage += totalPage;
                     break;
                 case 0x1234:
@@ -130,7 +130,8 @@ public class ReadChapterActivity extends AppCompatActivity {
 //        NovelChapter chapter= (NovelChapter) getIntent().getSerializableExtra("chapter");
 //        String path=chapter.getChapterPath();
         path = getIntent().getStringExtra("path");
-        list= getIntent().getStringArrayListExtra("chaptersUrl");
+        list = getIntent().getStringArrayListExtra("chaptersUrl");
+        curChapter=list.indexOf(path);
 //        Log.i("TAGss", "onCreate: "+list.toString());
         getChapterContent(path);//异步获取内容
     }
@@ -181,10 +182,12 @@ public class ReadChapterActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                Log.i("TAG", "onPageSelected:..... position"+position);
                 if (position == allTotalPage - 1) {
-                    getNextChapterContent(list.get(curChapter+1));
-                    Log.i("TAG", "onPageSelected: " + (allTotalPage - 1));
-
+                    if (curChapter < list.size()-1) {
+                        getNextChapterContent(list.get(curChapter + 1));
+                        Log.i("TAG", "onPageSelected: " + (allTotalPage - 1));
+                    }
                 }
             }
 
