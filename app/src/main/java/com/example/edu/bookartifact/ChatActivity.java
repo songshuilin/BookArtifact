@@ -145,7 +145,7 @@ public class ChatActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            myAdapter.addData(new ChatItem(ANSWER_NAME, resultStr, answer_icon));
+            myAdapter.addData(new ChatItem(ANSWER_NAME, "人家听不懂你在说什么了啦", answer_icon));
             scrollToEnd();
         } else if ("0".equals(type)) {
             Gson gson = new Gson();
