@@ -1,109 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <android.support.v7.widget.Toolbar
-        android:padding="10dp"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorTitle"
-        >
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center"
-         android:layout_margin="5dp"
-         >
-         <ImageView
-             android:layout_centerInParent="true"
-             android:id="@+id/usernameImg"
-             android:layout_alignParentLeft="true"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:src="@drawable/home_menu_0"
-             />
-
-         <ImageView
-             android:layout_centerInParent="true"
-             android:layout_toRightOf="@+id/usernameImg"
-              android:layout_marginRight="30dp"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:src="@drawable/home_ab_logo"
-             />
-
-            <ImageView
-                android:id="@+id/search"
-                android:layout_centerInParent="true"
-             android:layout_alignParentRight="true"
-             android:layout_width="60dp"
-             android:layout_height="wrap_content"
-             android:src="@drawable/search"
-             />
-     </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/song_tab_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorTitle"
-        app:tabIndicatorColor="#00ffff"
-        app:tabSelectedTextColor="#0000ff"
-        app:tabMode="scrollable"
-        app:tabTextColor="#fff"
-         />
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/song_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <LinearLayout
+        android:id="@id/ll_book"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="#B63120"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:textColor="#fff"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:id="@+id/song_afterBook"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/btn_onclick"
-            android:text="追书" />
 
-        <Button
-            android:textColor="#fff"
-            android:background="@drawable/btn_onclick"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:id="@+id/song_community"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="社区" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/song_tab_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTitle"
+            app:tabIndicatorColor="#00ffff"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#0000ff"
+            app:tabTextColor="#fff"
+            />
 
-        <Button
-            android:textColor="#fff"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:id="@+id/song_find"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/btn_onclick"
-            android:text="发现" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/song_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
     </LinearLayout>
+
+
 </LinearLayout>

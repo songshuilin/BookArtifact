@@ -7,5 +7,6 @@
     <item name="et_bottom_content" type="id"/>
     <item name="tv_bottom_send" type="id"/>
     <item name="chat_error_what" type="id"/>
+    <item name="ll_book" type="id"/>
 
 </resources>

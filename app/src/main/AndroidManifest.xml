@@ -39,6 +39,7 @@
         <activity android:name=".ClickActivity"/>
         <activity android:name=".DiscoverActivity"/>
         <activity android:name=".MusicActivity"/>
+        <activity android:name=".ChatActivity"/>
      
 
 
