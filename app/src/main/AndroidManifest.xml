@@ -35,6 +35,7 @@
         <activity android:name="slidingmenuActivity.LocalBookActivity"/>
         <activity android:name="slidingmenuActivity.LoginActivity"/>
         <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
+        <activity android:name="slidingmenuActivity.ReadLocalBooksActivity"/>
         <activity android:name=".CommunityActivity"/>
         <activity android:name=".ClickActivity"/>
         <activity android:name=".DiscoverActivity"/>
