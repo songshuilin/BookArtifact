@@ -3,6 +3,7 @@ package com.example.edu.bookartifact;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -167,6 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.song_find:
                     llBook.setVisibility(View.GONE);
+                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_find.setBackgroundResource(R.drawable.onclick_shape);
                 if (disFragment == null){
                     disFragment = new DiscoverFragment();
                     transaction.add(R.id.dis_frag,disFragment);
@@ -180,8 +184,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.song_afterBook:
                 Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
                 llBook.setVisibility(View.VISIBLE);
+                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
+                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
                 break;
             case R.id.song_community:
+                mBtn_song_community.setBackgroundResource(R.drawable.onclick_shape);
+                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
                 if (comFragment == null){
                      comFragment = new CommunityFragment();
                     transaction.add(R.id.com_frag,comFragment);
