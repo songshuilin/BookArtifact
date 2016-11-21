@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.edu.bookartifact.ChatActivity;
 import com.example.edu.bookartifact.MusicActivity;
@@ -96,8 +97,12 @@ public class CommunityFragment extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.lay_share:
-
-
+                    Toast.makeText(getActivity(), "分享追书神器", Toast.LENGTH_SHORT).show();
+                    Intent intent_share = new Intent(Intent.ACTION_SEND);
+                    String uri="http://www.lagou.com/center/company_493.html?speedShow=true&m=1";
+                    intent_share.setType("text/plain");
+                    intent_share.putExtra(Intent.EXTRA_TEXT, "我正在使用追书神器看小说，下载地址："+uri);
+                    startActivity(intent_share);
                     break;
                 case R.id.lay_saoyisao:
 

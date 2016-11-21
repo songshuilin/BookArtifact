@@ -9,24 +9,24 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-
     <application
         android:name=".MyApplication"
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.edu.bookartifact.LuanchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="ui.ReadChapterActivity"
-            />
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name="ui.ReadChapterActivity"/>
         <activity android:name="ui.NovelChapterListActivity"/>
         <activity android:name="ui.NovelDescActivity"/>
         <activity android:name=".SearchActivity"/>
@@ -35,6 +35,7 @@
         <activity android:name="slidingmenuActivity.FeedBackActivity"/>
         <activity android:name="slidingmenuActivity.JoinUsActivity"/>
         <activity android:name="slidingmenuActivity.LocalBookActivity"/>
+        <activity android:name="slidingmenuActivity.ReadLocalBooksActivity"/>
         <activity android:name="slidingmenuActivity.LoginActivity"/>
         <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
         <activity android:name=".CommunityActivity"/>
@@ -42,7 +43,9 @@
         <activity android:name=".DiscoverActivity"/>
         <activity android:name=".MusicActivity"/>
         <activity android:name=".ChatActivity"/>
-     
+
+        <service android:name="service.MyService"/>
+
 
 
     </application>
