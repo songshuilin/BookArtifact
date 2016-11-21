@@ -108,6 +108,7 @@ public class NovelChapterFragment extends Fragment {
     public void setgNight(Boolean isNight){
        if (isNight){
            mLl.setBackgroundColor(Color.parseColor("#2B2B2B"));
+           mChapterContent.setTextColor(Color.parseColor("#ffffff"));
        }else {
            mLl.setBackgroundResource(R.drawable.textback);
        }
@@ -167,7 +168,5 @@ public class NovelChapterFragment extends Fragment {
        this.registerForContextMenu(mChapterContent);//为内容textview注册上下文事件
 
     }
-
-
 
 }
