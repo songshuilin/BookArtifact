@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/textback"
     android:orientation="vertical"
+    android:id="@+id/ll_novel_chapter"
   >
 
 

@@ -137,7 +137,5 @@ public class NovelChapterListActivity extends AppCompatActivity {
                 handler.sendMessage(message);
             }
         }.start();
-
-
     }
 }
