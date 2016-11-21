@@ -55,8 +55,10 @@ public class ReadChapterActivity extends AppCompatActivity {
     private String content;
     private boolean isChanged = false;
     private String[] sizeName = {"小", "中", "大"};
-    private int whereOne;
+    private int whereOne;//设置字体大小的  item posiion
+    private int whereOneReadName;//发音人的 item posiion
     private String name;
+    private String readname;
     private boolean isNight = false;
     private boolean isVoice = false;
     private String[] readPeopleName = new String[]{
@@ -225,8 +227,8 @@ public class ReadChapterActivity extends AppCompatActivity {
 
                 if (isVoice) {
                     TextView tv = (TextView) fragments.get(position).getView().findViewById(R.id.chapter_content);
-                    name = getPeopleName(readPeopleName[whereOne]);
-                    mTts.setParameter(SpeechConstant.VOICE_NAME, name);
+                    readname = getPeopleName(readPeopleName[whereOneReadName]);
+                    mTts.setParameter(SpeechConstant.VOICE_NAME, readname);
                     //开始合成
                     mTts.startSpeaking(tv.getText().toString(), listener);
                 }
@@ -302,13 +304,18 @@ public class ReadChapterActivity extends AppCompatActivity {
                 dialog1.setSingleChoiceItems(readPeopleName, 1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        whereOne = which;
+                        whereOneReadName = which;
                     }
                 });
                 dialog1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         isVoice = true;
+                        TextView tv = (TextView) fragments.get(curPagePosition).getView().findViewById(R.id.chapter_content);
+                        readname = getPeopleName(readPeopleName[whereOneReadName]);
+                        mTts.setParameter(SpeechConstant.VOICE_NAME, readname);
+                        //开始合成
+                        mTts.startSpeaking(tv.getText().toString(), listener);
                     }
                 });
                 dialog1.setNegativeButton("取消", null);
