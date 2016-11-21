@@ -1,6 +1,7 @@
 package com.example.edu.bookartifact;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,9 +28,13 @@ import java.util.Map;
 
 import DBUtil.HistoryDB;
 import adapter.HistoryShow_Adapter;
+import adapter.SearchResultAdapter;
 import bean.HistoryBean;
+import bean.SearchNovelBean;
+import ui.NovelDescActivity;
 import utils.GetDate_;
 import utils.IsNetworkAvailable;
+import utils.Search_CrawlerDate;
 
 
 /**
@@ -43,10 +48,14 @@ import utils.IsNetworkAvailable;
 public class SearchActivity extends Activity {
     private EditText et_search;
     private ListView lv_history_show;
+    private ListView lv_search_result;
     private String path1 = "http://s.xs8.cn/kw/";
+    private String path_rs="http://s.xs8.cn/kw/";//搜索结果连接
     private HistoryDB db;
-    private HistoryShow_Adapter adapter;
-    private List<HistoryBean> list_ = new ArrayList<HistoryBean>();
+    private HistoryShow_Adapter adapter;//历史记录
+    private SearchResultAdapter adapter_sr;//搜索结果
+    private List<HistoryBean> list_ = new ArrayList<HistoryBean>();//历史记录
+    private List<SearchNovelBean>list_sr=new ArrayList<SearchNovelBean>();//搜索结果
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +63,13 @@ public class SearchActivity extends Activity {
         setContentView(R.layout.search_layout);
         et_search = (EditText) findViewById(R.id.et_search);
         lv_history_show = (ListView) findViewById(R.id.lv_history_show);
+        lv_search_result= (ListView) findViewById(R.id.lv_search_result);
 
         //历史纪录的点击事件
         lv_history_show.setOnItemClickListener(itemClickListener);
+
+        //搜索结果的点击事件
+        lv_search_result.setOnItemClickListener(itemClickListener_sr);
 
         //获取数据库
         db = HistoryDB.getIntance();
@@ -107,48 +120,28 @@ public class SearchActivity extends Activity {
     //搜索按钮
     public void btn_Search(View view) {
         String et_str = et_search.getText().toString();
+
         String ppp = "";
         try {
             ppp = URLEncoder.encode(et_str, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        path_rs=path1+ppp;//搜索对应的连接
         String path = path1 + ppp;
         Log.e("TAG", path);
-        if (IsNetworkAvailable.isNetworkAvailable(SearchActivity.this)) {
-            http_s(ppp);
-        } else {
-            Toast.makeText(SearchActivity.this, "请检查网络情况！！！", Toast.LENGTH_SHORT).show();
-            Log.e("TAG", "请检查网络情况！！！");
-        }
         String time = GetDate_.getDate_();//获取时间
         showHistory(et_str, time);
         list_ = db.loadHistory();
         adapter = new HistoryShow_Adapter(SearchActivity.this, list_);
         lv_history_show.setAdapter(adapter);
-    }
 
-    public void http_s(final String et_) {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    String path = path1 + et_;
-                    Document doc = Jsoup.connect(path).get();
-                    Elements elements = doc.getElementsByClass("pic");
-                    String info = elements.toString();
 
-                    Message message = handler.obtainMessage();
-                    message.obj = info;
-                    message.what = 123;
-                    handler.sendMessage(message);
+        //搜索结果
+        list_sr.clear();//每次先清空一下
+        crawlerNovel();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+
 
     }
 
@@ -156,10 +149,10 @@ public class SearchActivity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            String info = null;
-            if (msg.what == 123) {
-                info = (String) msg.obj;
-//                Log.e("TAG",":"+info);
+            if (msg.what == 0x123) {
+               list_sr= (List<SearchNovelBean>) msg.obj;
+                adapter_sr=new SearchResultAdapter(SearchActivity.this,list_sr);
+                lv_search_result.setAdapter(adapter_sr);
             }
 
         }
@@ -190,6 +183,19 @@ public class SearchActivity extends Activity {
 
     }
 
+    //搜索结果点击事件
+    private AdapterView.OnItemClickListener itemClickListener_sr=new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            SearchNovelBean bean_sr_= (SearchNovelBean) parent.getAdapter().getItem(position);
+            String path_intent=bean_sr_.getNovelPath();
+            Log.e("TAG","path_intent="+path_intent);
+            Intent intent = new Intent(SearchActivity.this, NovelDescActivity.class);
+            intent.putExtra("novelPath", path_intent);
+            startActivity(intent);
+        }
+    };
+
     //历史记录的点击事件
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -204,14 +210,35 @@ public class SearchActivity extends Activity {
                 e.printStackTrace();
             }
             String path = path1 + ppp;
+            path_rs=path;
             Log.e("TAG", path);
             String time = GetDate_.getDate_();//重新获取时间
             showHistory(cont, time);//更新数据库
             list_ = db.loadHistory();//重新显示历史信息
             adapter = new HistoryShow_Adapter(SearchActivity.this, list_);
             lv_history_show.setAdapter(adapter);
+
+            //搜索结果
+            list_sr.clear();//每次先清空一下
+            crawlerNovel();
         }
     };
+
+
+    //搜索爬取数据
+    public void crawlerNovel(){
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                List<SearchNovelBean>list____=Search_CrawlerDate.getNovel(path_rs);
+                Message message=handler.obtainMessage();
+                message.obj=list____;
+                message.what=0x123;
+                handler.sendMessage(message);
+            }
+        }.start();
+    }
 
 
 }

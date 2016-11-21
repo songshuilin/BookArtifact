@@ -32,6 +32,16 @@
             android:text="搜索"/>
     </LinearLayout>
 
+    <!--搜索结果显示-->
+   <ListView
+       android:id="@+id/lv_search_result"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+
+   </ListView>
+
+
     <!--推荐部分-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,6 +63,7 @@
             android:layout_weight="3"
             android:text="搜索历史"
             android:textSize="18sp"/>
+
         <!--清空历史记录按钮-->
         <LinearLayout
             android:layout_width="0dp"
@@ -78,10 +89,15 @@
     </LinearLayout>
 
     <!--搜索历史显示部分-->
-    <ListView
-        android:id="@+id/lv_history_show"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="70dp"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/lv_history_show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </LinearLayout>
 
-    </ListView>
 </LinearLayout>
