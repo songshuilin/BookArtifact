@@ -2,20 +2,27 @@
 <!--显示历史记录的item-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="30dp"
               android:orientation="horizontal">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1">
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerInParent="true"
             android:padding="5dp"
             android:src="@drawable/search_history_mark_light"/>
+    </RelativeLayout>
+
         <TextView
             android:id="@+id/tv_history_item"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
+            android:textSize="12sp"
             android:text="美女"/>
     </LinearLayout>

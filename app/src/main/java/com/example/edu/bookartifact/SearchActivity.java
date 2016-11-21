@@ -2,6 +2,7 @@ package com.example.edu.bookartifact;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -47,6 +49,7 @@ import utils.Search_CrawlerDate;
 
 public class SearchActivity extends Activity {
     private EditText et_search;
+    private Button btn_search;
     private ListView lv_history_show;
     private ListView lv_search_result;
     private String path1 = "http://s.xs8.cn/kw/";
@@ -64,6 +67,7 @@ public class SearchActivity extends Activity {
         et_search = (EditText) findViewById(R.id.et_search);
         lv_history_show = (ListView) findViewById(R.id.lv_history_show);
         lv_search_result= (ListView) findViewById(R.id.lv_search_result);
+        btn_search= (Button) findViewById(R.id.btn_search);
 
         //历史纪录的点击事件
         lv_history_show.setOnItemClickListener(itemClickListener);
@@ -119,6 +123,8 @@ public class SearchActivity extends Activity {
 
     //搜索按钮
     public void btn_Search(View view) {
+
+
         String et_str = et_search.getText().toString();
 
         String ppp = "";
@@ -140,7 +146,6 @@ public class SearchActivity extends Activity {
         //搜索结果
         list_sr.clear();//每次先清空一下
         crawlerNovel();
-
 
 
     }

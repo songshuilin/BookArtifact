@@ -50,12 +50,12 @@ public class SearchResultAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         mHoudle houdle=null;
         if (view==null){
-            view=inflater.inflate(R.layout.search_result_show_item_layout,null);
+            view=inflater.inflate(R.layout.recycler_view_item,null);
             houdle=new mHoudle();
-            houdle.img_pic= (ImageView) view.findViewById(R.id.search_item_img);
-            houdle.tv_title= (TextView) view.findViewById(R.id.search_item_title);
-            houdle.tv_author= (TextView) view.findViewById(R.id.search_item_aythor);
-            houdle.tv_type= (TextView) view.findViewById(R.id.search_item_type);
+            houdle.img_pic= (ImageView) view.findViewById(R.id.novelImg);
+            houdle.tv_title= (TextView) view.findViewById(R.id.novelTitle);
+            houdle.tv_author= (TextView) view.findViewById(R.id.novelAuthor);
+            houdle.tv_type= (TextView) view.findViewById(R.id.novelTime);
             view.setTag(houdle);
         }else {
             houdle= (mHoudle) view.getTag();

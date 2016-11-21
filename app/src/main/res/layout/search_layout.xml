@@ -2,32 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#ff0000"
               android:orientation="vertical">
 
     <!--头部-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#B63120"
+        android:layout_height="70dp">
 
         <!--返回按钮-->
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ab_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_back_img"
             android:onClick="btn_Back"/>
         <!--搜索输入框-->
         <EditText
             android:id="@+id/et_search"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:gravity="center"
             android:hint="请输入书名或作者"/>
         <!--搜索按钮-->
         <Button
+            android:background="@drawable/btn_onclick"
+            android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:onClick="btn_Search"
             android:text="搜索"/>
     </LinearLayout>
@@ -62,7 +69,7 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="3"
             android:text="搜索历史"
-            android:textSize="18sp"/>
+            android:textSize="14sp"/>
 
         <!--清空历史记录按钮-->
         <LinearLayout
@@ -74,7 +81,7 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="26dp"
+                android:layout_height="18dp"
                 android:layout_weight="1"
                 android:src="@drawable/delete_disable_dark"/>
 
@@ -84,7 +91,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:text="清空"
-                android:textSize="18sp"/>
+                android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>
 
