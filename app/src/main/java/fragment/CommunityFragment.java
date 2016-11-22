@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.edu.bookartifact.BBSActivity;
 import com.example.edu.bookartifact.ChatActivity;
 import com.example.edu.bookartifact.MusicActivity;
 import com.example.edu.bookartifact.R;
@@ -92,7 +93,9 @@ public class CommunityFragment extends Fragment {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
+
                 case R.id.lay_discuss:
+                    startActivity(new Intent(getActivity(), BBSActivity.class));
 
                     break;
                 case R.id.lay_music:

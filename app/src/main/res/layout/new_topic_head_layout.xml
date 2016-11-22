@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="@dimen/head_height">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height"
+        android:orientation="horizontal"
+        android:background="#B63120"
+        android:gravity="center_vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+        <!-- 返回按钮-->
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:background="@drawable/ic_back_img"/>
+        <TextView
+            android:id="@+id/tv_head"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="ffff"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="23sp"/>
+        <Button
+            android:id="@+id/right"
+            android:layout_width="60dp"
+            android:layout_height="37dp"
+            android:text="发布"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/red"/>
+    </LinearLayout>
+
+</LinearLayout>

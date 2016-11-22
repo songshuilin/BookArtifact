@@ -11,5 +11,24 @@
     <item name="loginError" type="id"/>
     <item name="userUrl" type="id"/>
     <item name="setUserIcon" type="id"/>
+    <item name="rv_bbs_topic" type="id"/>
+    <item name="topic_result" type="id"/>
+    <item name="topic_result_refresh" type="id"/>
+    <item name="topic_result_error" type="id"/>
+    <item name="tv_topic_error" type="id"/>
+    <item name="topic_icon" type="id"/>
+    <item name="tv_topic_username" type="id"/>
+    <item name="tv_topic_time" type="id"/>
+    <item name="tv_topic_title" type="id"/>
+    <item name="loadPicWhat" type="id"/>
+    <item name="loadPicRefreshWhat" type="id"/>
+    <item name="waitDiaImg" type="id"/>
+    <item name="tv_topic_content" type="id"/>
+    <item name="et_topic_title" type="id"/>
+    <item name="et_topic_content" type="id"/>
+    <item name="btn_new_topic_leave_ensure" type="id"/>
+    <item name="btn_new_topic_leave_notsure" type="id"/>
+    <item name="refresh" type="id"/>
+    <item name="refresh_head" type="id"/>
 
 </resources>

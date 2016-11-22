@@ -60,8 +60,12 @@
         <activity android:name=".DiscoverActivity"/>
         <activity android:name=".MusicActivity"/>
         <activity android:name=".ChatActivity"/>
+        <activity android:name=".BBSActivity"/>
+        <activity android:name=".NewTopicActivity"/>
+        <activity android:name=".TopicItemContentActivity"/>
 
         <service android:name="service.MyService"/>
+
 
 
     </application>

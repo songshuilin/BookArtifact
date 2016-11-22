@@ -9,4 +9,6 @@
     <dimen name="bottom_edittext_size">24sp</dimen>
     <dimen name="bottom_edit_heigh">40dp</dimen>
     <dimen name="head_height">70dp</dimen>
+
+    <dimen name="topic_icon_size">50dp</dimen>
 </resources>
