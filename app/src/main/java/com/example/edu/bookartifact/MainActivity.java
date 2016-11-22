@@ -1,7 +1,10 @@
 package com.example.edu.bookartifact;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -72,9 +75,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DiscoverFragment disFragment;
     private FragmentManager manager;
     private SharedPreferences sp;
-
+    private  List<Fragment> fragments;
     private CircleImageView circleLoginView;
     private TextView tv_name;
+    private SharedUtil sharedUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initFrag();
         initViews();//初始化view
         CrawlerData.getNovelTypeList();//获取小说的类型，也就是分类
+
+        //夜间模式默认设置 （日间模式）
+        sharedUtil = SharedUtil.getInstance(MainActivity.this);
+        sharedUtil.put_NightMode("0");//默认为日间模式
+
 
     }
 
@@ -176,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Subscribe(threadMode = ThreadMode.MAIN)//表示运行在主线程
     public void getNovelList(List<NovelType> event) {
-        List<Fragment> fragments = new ArrayList<>();
+         fragments = new ArrayList<>();
         /**
          * 动态初始化fragmnet,并且从activity传值给对应的fragment
          */
@@ -324,7 +333,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.nightMode:
-                Toast.makeText(MainActivity.this, "夜间模式", Toast.LENGTH_SHORT).show();
+                if (sharedUtil.get_NightMode().toString().equals("0")){
+                    Log.e("TAG","oldmode==="+sharedUtil.get_NightMode().toString()+"    点击前模式=日间模式");
+                    item.setIcon(R.drawable.theme_day);
+                    item.setTitle("夜间模式");
+                    sharedUtil.put_NightMode("1");
+                    Log.e("TAG","newmode==="+sharedUtil.get_NightMode().toString()+"    点击后模式=夜间模式");
+                    Toast.makeText(MainActivity.this, "夜间模式开启", Toast.LENGTH_SHORT).show();
+                }else {
+                    Log.e("TAG","oldmode==="+sharedUtil.get_NightMode().toString()+"    点击前模式=夜间模式");
+                    sharedUtil.put_NightMode("0");
+                    item.setIcon(R.drawable.theme_night);
+                    item.setTitle("日间模式");
+                    Log.e("TAG","newmode==="+sharedUtil.get_NightMode().toString()+"    点击后模式=日间模式");
+                    Toast.makeText(MainActivity.this, "日间模式开启", Toast.LENGTH_SHORT).show();
+
+                }
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.set:
