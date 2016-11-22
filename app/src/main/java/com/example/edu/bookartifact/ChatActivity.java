@@ -1,6 +1,7 @@
 package com.example.edu.bookartifact;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ import bean.ChatItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import utils.GetChatResult;
+import utils.LoadIconFromNet;
+import utils.SharedUtil;
 
 
 public class ChatActivity extends Activity {
@@ -60,6 +63,7 @@ public class ChatActivity extends Activity {
     public Bitmap question_icon_dafult;
     //recyclerview适配器
     private MyAdapter myAdapter;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +84,15 @@ public class ChatActivity extends Activity {
         tvBottomSend = (TextView) findViewById(R.id.tv_bottom_send);
         etBottomContent = (EditText) findViewById(R.id.et_bottom_content);
         rvChat = (RecyclerView) findViewById(R.id.rv_chat);
-        question_icon_dafult = BitmapFactory.decodeResource(this.getResources(), R.drawable.question_dafult_icon);
+        sp = SharedUtil.getSharedPreferences(this);
+        String userIconUrl = sp.getString("userIconUrl", "0");
+        if (!userIconUrl.equals("0")){
+            LoadIconFromNet.loadPic(handler,R.id.iv_chat_icon,this,userIconUrl);
+        }else {
+            question_icon_dafult = BitmapFactory.decodeResource(this.getResources(), R.drawable.question_dafult_icon);
+        }
+
+
         answer_icon = BitmapFactory.decodeResource(this.getResources(), R.drawable.answer_girl_icon);
         //设置布局管理器
         rvChat.setLayoutManager(new LinearLayoutManager(this));
@@ -117,6 +129,10 @@ public class ChatActivity extends Activity {
                     //出现异常无法获取正常回复信息，回复错误信息
                     myAdapter.addData(new ChatItem(ANSWER_NAME, (String) msg.obj, answer_icon));
                     scrollToEnd();
+                    break;
+                case R.id.iv_chat_icon:
+                    question_icon_dafult = (Bitmap) msg.obj;
+                    break;
 
                 default:
                     break;

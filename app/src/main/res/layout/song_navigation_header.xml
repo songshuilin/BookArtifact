@@ -6,11 +6,12 @@
     android:padding="15dp"
     android:orientation="vertical">
 
-       <ImageView
+       <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/song_login_Img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/home_menu_0"
+        android:clickable="true"
         />
 
     <TextView
