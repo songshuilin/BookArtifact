@@ -239,12 +239,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     transaction.show(disFragment);
                 }
+                mBtn_song_find.setBackgroundResource(R.drawable.onclick_shape);
+                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
 
                 Toast.makeText(MainActivity.this, "发现", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.song_afterBook:
                 Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
                 llBook.setVisibility(View.VISIBLE);
+                mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
+                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
                 break;
             case R.id.song_community:
                 if (comFragment == null) {
@@ -256,7 +262,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 llBook.setVisibility(View.GONE);
-
+                mBtn_song_community.setBackgroundResource(R.drawable.onclick_shape);
+                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
                 Toast.makeText(MainActivity.this, "社区", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.search:

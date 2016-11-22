@@ -34,7 +34,7 @@
             android:text="快速登陆"
             android:textSize="20dp"
             android:textColor="#06A9F3"
-            android:background="@drawable/bottom_edit_shape"/>
+            android:background="@drawable/btn_login_select"/>
         <Button
             android:id="@+id/btn_unLogin"
             android:layout_width="0dp"
@@ -44,7 +44,7 @@
             android:textSize="20dp"
             android:textColor="#06A9F3"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/bottom_edit_shape"/>
+            android:background="@drawable/btn_login_select"/>
     </LinearLayout>
     
 
