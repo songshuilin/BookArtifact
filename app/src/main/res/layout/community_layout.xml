@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/head_layout"/>
+    <!-- 社区的头部-->
+
     <!-- 本地音乐的相对布局框架-->
     <RelativeLayout
         android:id="@+id/lay_music"

@@ -48,11 +48,13 @@ public class CommunityActivity extends Activity {
                     break;
                 case  R.id.lay_share:
 
+
                     break;
                 case  R.id.lay_saoyisao:
                     startActivityForResult(new Intent(CommunityActivity.this,CaptureActivity.class),0);
                     break;
                 case  R.id.lay_girl:
+                    startActivity(new Intent(CommunityActivity.this,ChatActivity.class));
 
                     break;
                 case  R.id.back:

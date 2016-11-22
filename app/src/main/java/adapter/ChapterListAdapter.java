@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.example.edu.bookartifact.R;
@@ -18,14 +20,13 @@ import bean.NovelChapter;
  * 作者  ：宋水林
  * 时间 ：2016-11-13
  * 描述 ：小说章节的展示，采用的是RecyclerView 适配器类
- *
  */
-public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.MyHolder> implements View.OnClickListener{
+public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.MyHolder> implements View.OnClickListener {
 
     private Context context;//上下文
     private List<NovelChapter> list;//小说章节的集合
 
-    private  OnClickItemListener listener;//item的监听
+    private OnClickItemListener listener;//item的监听
 
     public void setListener(OnClickItemListener listener) {
         this.listener = listener;
@@ -33,23 +34,26 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
 
     /**
      * item 的点击事件
+     *
      * @param v
      */
     @Override
     public void onClick(View v) {
-        if (listener!=null){
-            listener.OnClickItem(v,(NovelChapter)v.getTag());
+        if (listener != null) {
+            listener.OnClickItem(v, (NovelChapter) v.getTag());
         }
     }
-      /**
-       *自定义回调的接口，
-       */
-    public interface OnClickItemListener{
+
+    /**
+     * 自定义回调的接口，
+     */
+    public interface OnClickItemListener {
         void OnClickItem(View view, NovelChapter chapter);
     }
 
     /**
      * 构造方法
+     *
      * @param context
      * @param list
      */
@@ -62,6 +66,8 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //加载 item的view
         View view = LayoutInflater.from(context).inflate(R.layout.chapter_list_item, parent, false);
+        Animation set = AnimationUtils.loadAnimation(context, R.anim.chapterlist);
+        view.startAnimation(set);
         MyHolder holder = new MyHolder(view);
         view.setOnClickListener(this);//为item设置点击事件
         return holder;
@@ -69,8 +75,8 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
 
 
     /**
-     *
      * 主要用户控件的初始化，
+     *
      * @param holder
      * @param position
      */
@@ -84,6 +90,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
 
     /**
      * item的数量
+     *
      * @return
      */
     @Override

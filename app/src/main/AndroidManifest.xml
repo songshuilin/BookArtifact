@@ -8,22 +8,40 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.edu.bookartifact.LuanchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="1105760907"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:name=".MainActivity">
+
         </activity>
         <activity android:name="ui.ReadChapterActivity"/>
         <activity android:name="ui.NovelChapterListActivity"/>
@@ -34,21 +52,17 @@
         <activity android:name="slidingmenuActivity.FeedBackActivity"/>
         <activity android:name="slidingmenuActivity.JoinUsActivity"/>
         <activity android:name="slidingmenuActivity.LocalBookActivity"/>
+        <activity android:name="slidingmenuActivity.ReadLocalBooksActivity"/>
         <activity android:name="slidingmenuActivity.LoginActivity"/>
         <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
-        <activity android:name=".MusicActivity"/>
-        <activity android:name=".ClickActivity"/>
         <activity android:name=".CommunityActivity"/>
+        <activity android:name=".ClickActivity"/>
         <activity android:name=".DiscoverActivity"/>
-        <service android:name="service.MyService">
-            <intent-filter>
-                <action android:name="music_service"/>
-            </intent-filter>
-        </service>
+        <activity android:name=".MusicActivity"/>
+        <activity android:name=".ChatActivity"/>
 
-        <activity android:name=".ResultForSaoYiSaoActivity"/>
-        <activity android:name="zxing.activity.CaptureActivity"
-            android:configChanges="orientation|keyboardHidden"/>
+        <service android:name="service.MyService"/>
+
 
     </application>
 

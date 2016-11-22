@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ public class NovelDescActivity extends AppCompatActivity {
     private com.example.edu.bookartifact.databinding.ActivityNovelDescBinding novelDescBinding;
     private ImageView img;
     private NovelDesc novelDesc;
+    private AlertDialog dialog;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -37,6 +39,7 @@ public class NovelDescActivity extends AppCompatActivity {
                     //这里用到了 图片加载框架，Picasso,
                     Picasso.with(NovelDescActivity.this).load(novelDesc.getNovelImgPath())
                             .placeholder(R.drawable.default_novel).into(img);
+                   dialog.dismiss();
                     break;
             }
         }
@@ -50,7 +53,10 @@ public class NovelDescActivity extends AppCompatActivity {
         String novelPath = getIntent().getStringExtra("novelPath");
         getNovel(novelPath);
         initViews();
-
+        dialog= new AlertDialog.Builder(this).create();
+        dialog.setCancelable(false);
+        dialog.setMessage("拼命加载中...");
+        dialog.show();
     }
 
     /**

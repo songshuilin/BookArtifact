@@ -57,7 +57,12 @@ public class SharedUtil {
 	public String get_save(){
 		return getSharedPreferences(context).getString("save","0");
 	}
-
+	public String get_username(){
+		return getSharedPreferences(context).getString("username","0");
+	}
+	public String get_userIconUrl(){
+		return getSharedPreferences(context).getString("userIconUrl","0");
+	}
 
 
 }

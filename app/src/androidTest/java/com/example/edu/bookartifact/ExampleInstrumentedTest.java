@@ -3,9 +3,13 @@ package com.example.edu.bookartifact;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.text.format.Time;
+import android.util.Log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.*;
 
@@ -18,9 +22,8 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.example.edu.bookartifact", appContext.getPackageName());
+        SimpleDateFormat format=new SimpleDateFormat("HH:mm");
+        String time=format.format(System.currentTimeMillis());
+        Log.i("TAG", "useAppContext: "+time);
     }
 }

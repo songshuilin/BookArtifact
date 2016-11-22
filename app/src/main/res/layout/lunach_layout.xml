@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_ad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_launch_ad_pic1"
+            android:background="@drawable/bg_intro_1"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_launch_ad_pic2"
+            android:background="@drawable/bg_intro_2"/>
+
+    </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_marginRight="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="快速登陆"
+            android:textSize="20dp"
+            android:textColor="#06A9F3"
+            android:background="@drawable/btn_login_select"/>
+        <Button
+            android:id="@+id/btn_unLogin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="直接进入"
+            android:textSize="20dp"
+            android:textColor="#06A9F3"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_login_select"/>
+    </LinearLayout>
+    
+
+</FrameLayout>

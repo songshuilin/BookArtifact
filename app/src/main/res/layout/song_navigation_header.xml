@@ -3,16 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:padding="15dp"
     android:orientation="vertical">
 
-       <ImageView
+       <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/song_login_Img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/home_menu_0"
+        android:clickable="true"
         />
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/song_login_username"
         android:text="宋水林"
         android:layout_width="wrap_content"

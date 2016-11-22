@@ -1,11 +1,13 @@
 package bean;
 
+import java.io.Serializable;
+
 /** 作者 : 宋水林
  * 时间 ：2016-11-15
  * 描述 ：小说的章节实体类
  */
 
-public class NovelChapter {
+public class NovelChapter{
     private String chapterName;//小说章节的名字
     private String chapterPath;//小说章节里的内容的url
     private String chapterDesc;//小说章节的描述

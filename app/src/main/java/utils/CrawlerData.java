@@ -29,6 +29,8 @@ public class CrawlerData {
     private static List<NovelType> novelTypeList;
     private static List<NovelChapter> novelChapters;
     private static List<NovelChapterContent> novelChapterContentList;
+    private static List<NovelBean> list_search = null;//搜索结果的小说集合
+
     /**
      * 爬取一种类型的全部小说
      *
@@ -239,9 +241,15 @@ public class CrawlerData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return null;
+    }
+
+
+
+    public static List<NovelBean> getSearchReaultNovelList(String path){
+
+
+        return list_search;
     }
 
 }

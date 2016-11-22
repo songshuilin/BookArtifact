@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.edu.bookartifact.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import adapter.ChapterListAdapter;
@@ -31,6 +33,8 @@ public class NovelChapterListActivity extends AppCompatActivity {
     private TextView mAuthor;
     private RecyclerView mRecycler;
     private ChapterListAdapter adapter;
+    private AlertDialog dialog;
+    private ArrayList<String> chaptersUrl=new ArrayList<>();
     Handler handler = new Handler() {
 
         @Override
@@ -38,6 +42,7 @@ public class NovelChapterListActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case 0x123:
+
                     //设置recyclerview的布局
                     LinearLayoutManager manager=new LinearLayoutManager(NovelChapterListActivity.this);
                     manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -45,21 +50,32 @@ public class NovelChapterListActivity extends AppCompatActivity {
                     //设置recyclerview的分割线
                     mRecycler.addItemDecoration(new DividerItemDecoration(NovelChapterListActivity.this,
                             DividerItemDecoration.VERTICAL_LIST));
+//                    mRecycler.setItemAnimator(new DefaultItemAnimator());
+
                     adapter=new ChapterListAdapter(NovelChapterListActivity.this,chapters);
                     mRecycler.setAdapter(adapter);
                     Log.i("TAG", "handleMessage: "+chapters.toString());
+                    dialog.dismiss();//取消对话框
+
+                    for (int i = 0; i <chapters.size() ; i++) {
+                       String chapterUrl=chapters.get(i).getChapterPath();
+                        chaptersUrl.add(chapterUrl);
+                    }
                     /**
                      * RecyclerView  item点击事件
                      */
                      adapter.setListener(new ChapterListAdapter.OnClickItemListener() {
                          @Override
                          public void OnClickItem(View view, NovelChapter chapter) {
-                             Toast.makeText(NovelChapterListActivity.this, chapter.toString(), Toast.LENGTH_SHORT).show();
+                       //      Toast.makeText(NovelChapterListActivity.this, chapter.toString(), Toast.LENGTH_SHORT).show();
                              Intent intent=new Intent(NovelChapterListActivity.this,ReadChapterActivity.class);
+//                             intent.putExtra("chapter",chapter);
                              intent.putExtra("path",chapter.getChapterPath());
+                             intent.putStringArrayListExtra("chaptersUrl",chaptersUrl);
                              startActivity(intent);
                          }
                      });
+
                     break;
             }
         }
@@ -70,6 +86,10 @@ public class NovelChapterListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novel_chapter_list);
         initViews();
+        dialog= new AlertDialog.Builder(this).create();
+        dialog.setCancelable(false);
+        dialog.setMessage("拼命加载中...");
+        dialog.show();
         /**
          * 获取上个activity传过来的值
          */
@@ -117,7 +137,5 @@ public class NovelChapterListActivity extends AppCompatActivity {
                 handler.sendMessage(message);
             }
         }.start();
-
-
     }
 }

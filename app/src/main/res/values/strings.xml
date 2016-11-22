@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BookArtifact</string>
+    <string name="answerName">林妹妹</string>
+    <string name="answer_helloword">hi，想跟我唠嗑唠嗑？</string>
+    <string name="bottom_send">发送</string>
+    <string name="hello_blank_fragment">你好</string>
+    <string name="ignore">跳过</string>
+
+
 </resources>
