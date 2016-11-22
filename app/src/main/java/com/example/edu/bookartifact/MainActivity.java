@@ -1,10 +1,12 @@
 package com.example.edu.bookartifact;
 
 
-
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,11 +17,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,6 +37,7 @@ import adapter.NovelFragmentAdapter;
 import bean.NovelType;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import fragment.CommunityFragment;
 import fragment.DiscoverFragment;
 import fragment.ListBookFragment;
@@ -41,6 +46,10 @@ import slidingmenuActivity.LocalBookActivity;
 import slidingmenuActivity.SettingActivity;
 import slidingmenuActivity.WifiTranportActivity;
 import utils.CrawlerData;
+import utils.LoadIconFromNet;
+import utils.SharedUtil;
+
+import static android.util.Log.i;
 
 /**
  * 作者 : 宋水林
@@ -62,12 +71,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CommunityFragment comFragment;
     private DiscoverFragment disFragment;
     private FragmentManager manager;
+    private SharedPreferences sp;
+
+    private CircleImageView circleLoginView;
+    private TextView tv_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MyApplication.screenManager1.pushActivity(this);
         ButterKnife.bind(this);
+        sp = getSharedPreferences("setting",MODE_PRIVATE);
+
         EventBus.getDefault().register(this);//注册事件（eventbus）
         initFrag();
         initViews();//初始化view
@@ -79,11 +95,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         manager = getSupportFragmentManager();
     }
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case R.id.usernameImg:
+                    mUsernameImg.setImageBitmap((Bitmap) msg.obj);
+                    circleLoginView.setImageBitmap((Bitmap) msg.obj);
+
+                    break;
+                case R.id.setUserIcon:
+                    LoadIconFromNet.loadPic(handler, R.id.usernameImg, MainActivity.this, MyApplication.userIconUrl);
+
+                    if (!"0".equals(MyApplication.nickName)){
+                        tv_name.setText(MyApplication.nickName);
+                    }else {
+                        tv_name.setText("游客");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
 
     /**
      * 初始化各view 和一些view设置监听
      */
     private void initViews() {
+
 
         mTabLayout = (TabLayout) findViewById(R.id.song_tab_title);
         mViewPage = (ViewPager) findViewById(R.id.song_viewpager);
@@ -95,13 +137,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSearchImg = (ImageView) findViewById(R.id.search);
         mUsernameImg = (ImageView) findViewById(R.id.usernameImg);
         mDl = (DrawerLayout) findViewById(R.id.dl);
+
+
+
+
         mSearchImg.setOnClickListener(this);
         mUsernameImg.setOnClickListener(this);
         mBtn_song_find.setOnClickListener(this);
         mBtn_song_afterBook.setOnClickListener(this);
         mBtn_song_community.setOnClickListener(this);
         mNavigationView.setNavigationItemSelectedListener(this);
+        View headerView = mNavigationView.getHeaderView(0);
+        circleLoginView = (CircleImageView) headerView.findViewById(R.id.song_login_Img);
+        tv_name = (TextView) headerView.findViewById(R.id.song_login_username);
+
     }
+
+    private void setUserIcon() {
+        handler.sendEmptyMessageDelayed(R.id.setUserIcon,1000);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUserIcon();
+
+    }
+
 
     /**
      * 这里用到了eventbus 这个框架，这个方法只有收到了就会触发，相当于观察者模式
@@ -153,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);//取消注册
+        MyApplication.screenManager1.popActivity(this);
         super.onDestroy();
     }
 
@@ -167,15 +231,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hideFragments(transaction);
         switch (v.getId()) {
             case R.id.song_find:
-                    llBook.setVisibility(View.GONE);
-                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_find.setBackgroundResource(R.drawable.onclick_shape);
-                if (disFragment == null){
+                llBook.setVisibility(View.GONE);
+                if (disFragment == null) {
                     disFragment = new DiscoverFragment();
-                    transaction.add(R.id.dis_frag,disFragment);
+                    transaction.add(R.id.dis_frag, disFragment);
 
-                }else {
+                } else {
                     transaction.show(disFragment);
                 }
 
@@ -184,19 +245,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.song_afterBook:
                 Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
                 llBook.setVisibility(View.VISIBLE);
-                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
-                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
                 break;
             case R.id.song_community:
-                mBtn_song_community.setBackgroundResource(R.drawable.onclick_shape);
-                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
-                if (comFragment == null){
-                     comFragment = new CommunityFragment();
-                    transaction.add(R.id.com_frag,comFragment);
+                if (comFragment == null) {
+                    comFragment = new CommunityFragment();
+                    transaction.add(R.id.com_frag, comFragment);
 
-                }else {
+                } else {
                     transaction.show(comFragment);
                 }
 
@@ -219,10 +274,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void hideFragments(FragmentTransaction transaction) {
-        if(disFragment != null){
+        if (disFragment != null) {
             transaction.hide(disFragment);
         }
-        if (comFragment != null){
+        if (comFragment != null) {
             transaction.hide(comFragment);
         }
     }
@@ -264,9 +319,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent_chen_setting);
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
+            case R.id.song_login_Img:
+
+
+                break;
 
         }
 
         return true;
     }
+
 }

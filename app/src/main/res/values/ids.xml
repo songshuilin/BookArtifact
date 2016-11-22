@@ -8,5 +8,8 @@
     <item name="tv_bottom_send" type="id"/>
     <item name="chat_error_what" type="id"/>
     <item name="ll_book" type="id"/>
+    <item name="loginError" type="id"/>
+    <item name="userUrl" type="id"/>
+    <item name="setUserIcon" type="id"/>
 
 </resources>

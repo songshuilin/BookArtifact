@@ -186,5 +186,37 @@
             android:textSize="18sp"
             android:text="分享追书神器"/>
     </LinearLayout>
+    <!--切换账号-->
+    <LinearLayout
+        android:id="@+id/lin_change"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:padding="3dp"
+        android:layout_marginBottom="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="切换账号"/>
+    </LinearLayout>
+    <!--注销账号-->
+    <LinearLayout
+        android:id="@+id/lin_logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:padding="3dp"
+        android:layout_marginBottom="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="注销账号"/>
+    </LinearLayout>
     <!--更多_END-->
 </LinearLayout>

@@ -12,6 +12,7 @@ import com.example.edu.bookartifact.R;
 import java.util.List;
 
 import bean.ChatItem;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by roor on 2016/11/16.
@@ -127,13 +128,13 @@ public class MyAdapter extends RecyclerView.Adapter {
      */
     class QuestionViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name, tv_content;
-        ImageView iv_icon;
+        CircleImageView iv_icon;
 
         public QuestionViewHolder(View itemView) {
             super(itemView);
             tv_content = (TextView) itemView.findViewById(R.id.tv_chat_content);
             tv_name = (TextView) itemView.findViewById(R.id.tv_chat_name);
-            iv_icon = (ImageView) itemView.findViewById(R.id.iv_chat_icon);
+            iv_icon = (CircleImageView) itemView.findViewById(R.id.iv_chat_icon);
 
 
         }
