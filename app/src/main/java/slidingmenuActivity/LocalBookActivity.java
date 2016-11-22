@@ -165,13 +165,16 @@ public class LocalBookActivity extends Activity {
             Log.e("TAG","list_name="+bean.getName());
             Log.e("TAG","list_content="+bean.getContent());
             Log.e("TAG","list_path="+bean.getPath());
-            Bundle bundle=new Bundle();
-            bundle.putString("name",bean.getName());
-            bundle.putString("path",bean.getPath());
-//            bundle.putString("content", Uri.encode(bean.getContent(),"UTF-8"));
+//            Bundle bundle=new Bundle();
+//            bundle.putString("name",bean.getName());
+//            bundle.putString("path",bean.getPath());
+////            bundle.putString("content", Uri.encode(bean.getContent(),"UTF-8"));
+//            Intent intent_ReadLocalBook=new Intent(LocalBookActivity.this,ReadLocalBooksActivity.class);
+//            intent_ReadLocalBook.putExtras(bundle);
+//            startActivity(intent_ReadLocalBook);
+            String path_abs=bean.getPath();
             Intent intent_ReadLocalBook=new Intent(LocalBookActivity.this,ReadLocalBooksActivity.class);
-            intent_ReadLocalBook.putExtras(bundle);
-
+            intent_ReadLocalBook.putExtra("path",path_abs);
             startActivity(intent_ReadLocalBook);
         }
     };
