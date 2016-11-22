@@ -190,8 +190,7 @@ public class BookPageFactory {
 				lines.add(strParagraph);
 			}
 			while (strParagraph.length() > 0) {
-				int nSize = mPaint.breakText(strParagraph, true, mVisibleWidth,
-						null);
+				int nSize = mPaint.breakText(strParagraph, true, mVisibleWidth,null);
 				lines.add(strParagraph.substring(0, nSize));
 				strParagraph = strParagraph.substring(nSize);
 				if (lines.size() >= mLineCount) {
@@ -200,8 +199,7 @@ public class BookPageFactory {
 			}
 			if (strParagraph.length() != 0) {
 				try {
-					m_mbBufEnd -= (strParagraph + strReturn)
-							.getBytes(m_strCharsetName).length;
+					m_mbBufEnd -= (strParagraph + strReturn).getBytes(m_strCharsetName).length;
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

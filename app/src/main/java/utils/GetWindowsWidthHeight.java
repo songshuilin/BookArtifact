@@ -9,7 +9,7 @@ import android.view.WindowManager;
  * Created by 陈师表 on 2016/11/22.
  * 功能是：
  *   @ 获取屏幕的宽高
- *   @ 需要传入ontent
+ *   @ 需要传入Context
  *   @ 返回一个数组  长度为2  a[0]=屏幕宽度  a[1]=屏幕高度
  */
 
