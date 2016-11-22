@@ -71,17 +71,20 @@ public class CommunityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.community_layout, container, false);
-
-
-
-        ButterKnife.bind(this, view);
-        layMusic.setOnClickListener(listener);
-        layDiscuss.setOnClickListener(listener);
-        laySaoyisao.setOnClickListener(listener);
-        layShare.setOnClickListener(listener);
-        layGirl.setOnClickListener(listener);
-
+        if (view==null){
+            view = inflater.inflate(R.layout.community_layout, container, false);
+            ButterKnife.bind(this, view);
+            layMusic.setOnClickListener(listener);
+            layDiscuss.setOnClickListener(listener);
+            laySaoyisao.setOnClickListener(listener);
+            layShare.setOnClickListener(listener);
+            layGirl.setOnClickListener(listener);
+        }
+        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+        ViewGroup parent = (ViewGroup) view.getParent();
+        if (parent != null) {
+            parent.removeView(view);
+        }
         return view;
     }
 
