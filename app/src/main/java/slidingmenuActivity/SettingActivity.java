@@ -119,6 +119,10 @@ public class SettingActivity extends Activity {
         }else if ("1".equals(sw_state)){
             sw_save_flow.setChecked(true);
         }
+        if ("0".equals(nickName)){
+            ll_logout.setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.tv_change)).setText("登陆");
+        }
 
     }
 

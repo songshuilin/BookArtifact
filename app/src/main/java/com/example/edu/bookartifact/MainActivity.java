@@ -150,6 +150,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View headerView = mNavigationView.getHeaderView(0);
         circleLoginView = (CircleImageView) headerView.findViewById(R.id.song_login_Img);
         tv_name = (TextView) headerView.findViewById(R.id.song_login_username);
+        mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
+        mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
+        mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
 
     }
 
