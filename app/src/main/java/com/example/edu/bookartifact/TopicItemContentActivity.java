@@ -84,6 +84,12 @@ public class TopicItemContentActivity extends Activity {
         tvTopicTime.setText(time);
         tvTopicTitle.setText(title);
         tvTopicContent.setText(content);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
     }

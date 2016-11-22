@@ -2,12 +2,15 @@ package utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.edu.bookartifact.R;
 
+import java.io.FileNotFoundException;
 import java.util.concurrent.ExecutionException;
 
 import bean.TopicEnity;
@@ -24,18 +27,20 @@ public class LoadIconFromNet {
             @Override
             public void run() {
                 super.run();
-                try {
-                    Bitmap bitmap = Glide.with(context).load(t.getPic()).asBitmap().centerCrop().into(100,100).get();
+
+                    Bitmap bitmap = null;
+                    try {
+                         bitmap = Glide.with(context).load(t.getPic()).asBitmap().error(R.drawable.question_dafult_icon).centerCrop().into(100,100).get();
+                    }catch (Exception e){
+                        bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.question_dafult_icon);
+                    }
+
                     Message message = new Message();
                     message.obj = new TopicItemInShow(t.getDate(),t.getName(),t.getPid(),bitmap
                             ,t.getTitle(),t.getContent());
                     message.what = what;
                     handler.sendMessage(message);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+
             }
         }.start();
     }
@@ -45,18 +50,20 @@ public class LoadIconFromNet {
             @Override
             public void run() {
                 super.run();
+                Bitmap bitmap = null;
                 try {
+                    bitmap = Glide.with(context).load(url).asBitmap().error(R.drawable.question_dafult_icon).centerCrop().into(100,100).get();
+                }catch (Exception e){
+                    bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.question_dafult_icon);
+                }
 
-                    Bitmap bitmap = Glide.with(context).load(url).asBitmap().error(R.drawable.question_dafult_icon).centerCrop().into(100,100).get();
+
+
                     Message message = new Message();
                     message.obj = bitmap;
                     message.what = what;
                     handler.sendMessage(message);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+
             }
         }.start();
     }

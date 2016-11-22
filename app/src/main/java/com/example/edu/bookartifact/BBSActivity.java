@@ -1,6 +1,7 @@
 package com.example.edu.bookartifact;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import butterknife.ButterKnife;
 import utils.BBSToServer;
 import utils.CycListener;
 import utils.LoadIconFromNet;
+import utils.SharedUtil;
 
 import static android.util.Log.i;
 
@@ -127,6 +129,7 @@ public class BBSActivity extends Activity implements OnRefreshListener {
 
     }
 
+
     private void Loading() {
         dialog = new AlertDialog.Builder(this, R.style.WaitDialog).create();
         View dialogView = LayoutInflater.from(this).inflate(R.layout.wait_dialog_layout, null);
@@ -179,6 +182,9 @@ public class BBSActivity extends Activity implements OnRefreshListener {
 
     private void loadPicRefresh() {
         for (TopicEnity t : topicList) {
+            if (SharedUtil.getInstance(this).get_save().equals("1")){
+                t.setPic("qweq");
+            }
             LoadIconFromNet.load(handler, R.id.loadPicRefreshWhat, this, t);
 
         }
@@ -188,6 +194,9 @@ public class BBSActivity extends Activity implements OnRefreshListener {
     private void loadPic() {
         i("@@@@", "loadPic" + topicList.get(0).getName());
         for (TopicEnity t : topicList) {
+            if (SharedUtil.getInstance(this).get_save().equals("1")){
+                t.setPic("123");
+            }
             //String date, String name, int pid, Bitmap pic, String title, String content
 
             LoadIconFromNet.load(handler, R.id.loadPicWhat, this, t);
