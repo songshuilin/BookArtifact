@@ -1,11 +1,15 @@
 package slidingmenuActivity;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +20,25 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.edu.bookartifact.LuanchActivity;
+import com.example.edu.bookartifact.MainActivity;
+import com.example.edu.bookartifact.MyApplication;
 import com.example.edu.bookartifact.R;
+import com.tencent.connect.UserInfo;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONObject;
 
 import utils.SharedUtil;
+
+import static android.util.Log.i;
+
+import static com.example.edu.bookartifact.MyApplication.isLogined;
+import static com.example.edu.bookartifact.MyApplication.nickName;
+import static com.example.edu.bookartifact.MyApplication.userIconUrl;
 
 
 /**
@@ -33,12 +53,19 @@ public class SettingActivity extends Activity {
     private LinearLayout ll_join_us;//加入我们
     private LinearLayout ll_feedback;//意见反馈
     private LinearLayout ll_share_software;//分享追书神器
+    private LinearLayout ll_change;//切换账号
+    private LinearLayout ll_logout;//注销账号
     private TextView tv_book_by;//书架排序文字
 
     private RadioButton rb_update_time;//更新时间
     private RadioButton rb_recent_read;//最近阅读
 
     private SharedUtil sharedUtil;
+    private Tencent mTencent;
+    private static final String APPID = "1105760907";
+    private String scope;
+    private IUiListener loginListener;
+    private IUiListener userInfoListener;
 
 
     @Override
@@ -46,6 +73,7 @@ public class SettingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_layout);
         init_Setting();
+        initData();
 
     }
 
@@ -58,6 +86,8 @@ public class SettingActivity extends Activity {
         ll_join_us = (LinearLayout) findViewById(R.id.lin_join_us);
         ll_feedback = (LinearLayout) findViewById(R.id.lin_feedback);
         ll_share_software = (LinearLayout) findViewById(R.id.lin_share_software);
+        ll_change= (LinearLayout) findViewById(R.id.lin_change);
+        ll_logout= (LinearLayout) findViewById(R.id.lin_logout);
         tv_book_by = (TextView) findViewById(R.id.tv_sort_by);//书架排序设置
 
         //点击事件
@@ -66,6 +96,8 @@ public class SettingActivity extends Activity {
         ll_join_us.setOnClickListener(clickListener);
         ll_feedback.setOnClickListener(clickListener);
         ll_share_software.setOnClickListener(clickListener);
+        ll_change.setOnClickListener(clickListener);
+        ll_logout.setOnClickListener(clickListener);
 
         //Switch开关设置
         sw_save_flow.setOnCheckedChangeListener(checkChange);
@@ -79,6 +111,10 @@ public class SettingActivity extends Activity {
             sw_save_flow.setChecked(false);
         }else if ("1".equals(sw_state)){
             sw_save_flow.setChecked(true);
+        }
+        if ("0".equals(nickName)){
+            ll_logout.setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.tv_change)).setText("登陆");
         }
 
     }
@@ -144,6 +180,29 @@ public class SettingActivity extends Activity {
                     intent_share.setType("text/plain");
                     intent_share.putExtra(Intent.EXTRA_TEXT, "我正在使用追书神器看小说，下载地址："+uri);
                     startActivity(intent_share);
+                    break;
+                //切换账号
+                case R.id.lin_change:
+                    login();
+
+                    break;
+                //注销账号
+                case R.id.lin_logout:
+                    Intent intent = new Intent(SettingActivity.this,LuanchActivity.class);
+                    isLogined = false;
+                    userIconUrl = "0";
+                    nickName = "0";
+                    SharedPreferences sp = SharedUtil.getSharedPreferences(SettingActivity.this);
+                    SharedPreferences.Editor edit = sp.edit();
+                    edit.putString("username","0");
+                    edit.putString("userIconUrl","0");
+                    edit.commit();
+                    MyApplication.screenManager1.popAllActivityExceptMain(Activity.class);
+                    startActivity(intent);
+
+
+
+                    finish();
                     break;
                 default:
                     break;
@@ -221,6 +280,212 @@ public class SettingActivity extends Activity {
             Toast.makeText(SettingActivity.this,"省流量关闭",Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private UserInfo userInfo;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+
+                case R.id.btn_login:
+                    if(mTencent.getQQToken() == null){
+                        System.out.println("qqtoken == null");
+                    }
+                    userInfo = new UserInfo(SettingActivity.this, mTencent.getQQToken());
+                    userInfo.getUserInfo(userInfoListener);
+                    //startActivity(new Intent(SettingActivity.this,MainActivity.class));
+                    finish();
+                    break;
+                case R.id.loginError:
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
+
+
+
+
+
+
+
+
+
+    private void initData() {
+        mTencent = Tencent.createInstance(APPID, SettingActivity.this);
+
+        scope = "all";
+        loginListener = new IUiListener() {
+
+            @Override
+            public void onError(UiError arg0) {
+                handler.sendEmptyMessage(R.id.loginError);
+
+            }
+
+            /**
+             * {"ret":0,"pay_token":"D3D678728DC580FBCDE15722B72E7365",
+             * "pf":"desktop_m_qq-10000144-android-2002-",
+             * "query_authority_cost":448,
+             * "authority_cost":-136792089,
+             * "openid":"015A22DED93BD15E0E6B0DDB3E59DE2D",
+             * "expires_in":7776000,
+             * "pfkey":"6068ea1c4a716d4141bca0ddb3df1bb9",
+             * "msg":"",
+             * "access_token":"A2455F491478233529D0106D2CE6EB45",
+             * "login_cost":499}
+             */
+            @Override
+            public void onComplete(Object value) {
+                if (value == null) {
+                    return;
+                }
+
+                try {
+                    i("@@@", "onComplete" + "success");
+                    JSONObject jo = (JSONObject) value;
+
+                    String msg = jo.getString("msg");
+
+                    System.out.println("json=" + String.valueOf(jo));
+
+                    System.out.println("msg="+msg);
+                    if ("sucess".equals(msg)) {
+
+                        String openID = jo.getString("openid");
+                        String accessToken = jo.getString("access_token");
+                        String expires = jo.getString("expires_in");
+                        mTencent.setOpenId(openID);
+                        mTencent.setAccessToken(accessToken, expires);
+
+
+                    }
+                    handler.sendEmptyMessage(R.id.btn_login);
+
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
+            }
+
+            @Override
+            public void onCancel() {
+                // TODO Auto-generated method stub
+
+            }
+        };
+
+        userInfoListener = new IUiListener() {
+
+            @Override
+            public void onError(UiError arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            /**
+             * {"is_yellow_year_vip":"0","ret":0,
+             * "figureurl_qq_1":"http:\/\/q.qlogo.cn\/qqapp\/1104732758\/015A22DED93BD15E0E6B0DDB3E59DE2D\/40",
+             * "figureurl_qq_2":"http:\/\/q.qlogo.cn\/qqapp\/1104732758\/015A22DED93BD15E0E6B0DDB3E59DE2D\/100",
+             * "nickname":"��������ţ","yellow_vip_level":"0","is_lost":0,"msg":"",
+             * "city":"�Ƹ�","
+             * figureurl_1":"http:\/\/qzapp.qlogo.cn\/qzapp\/1104732758\/015A22DED93BD15E0E6B0DDB3E59DE2D\/50",
+             * "vip":"0","level":"0",
+             * "figureurl_2":"http:\/\/qzapp.qlogo.cn\/qzapp\/1104732758\/015A22DED93BD15E0E6B0DDB3E59DE2D\/100",
+             * "province":"����",
+             * "is_yellow_vip":"0","gender":"��",
+             * "figureurl":"http:\/\/qzapp.qlogo.cn\/qzapp\/1104732758\/015A22DED93BD15E0E6B0DDB3E59DE2D\/30"}
+             */
+            @Override
+            public void onComplete(Object arg0) {
+                // TODO Auto-generated method stub
+                if(arg0 == null){
+                    return;
+                }
+                try {
+                    JSONObject jo = (JSONObject) arg0;
+                    int ret = jo.getInt("ret");
+                    System.out.println("json=" + String.valueOf(jo));
+                    if(ret == 100030){
+                        //Ȩ�޲�������Ҫ������Ȩ
+                        Runnable r = new Runnable() {
+                            public void run() {
+                                mTencent.reAuth(SettingActivity.this, "all", new IUiListener() {
+
+                                    @Override
+                                    public void onError(UiError arg0) {
+                                        // TODO Auto-generated method stub
+
+                                    }
+
+                                    @Override
+                                    public void onComplete(Object arg0) {
+                                        // TODO Auto-generated method stub
+
+                                    }
+
+                                    @Override
+                                    public void onCancel() {
+                                        // TODO Auto-generated method stub
+
+                                    }
+                                });
+                            }
+                        };
+
+                        SettingActivity.this.runOnUiThread(r);
+                    }else{
+                        nickName = jo.getString("nickname");
+                        String gender = jo.getString("gender");
+                        userIconUrl = jo.getString("figureurl_qq_1");
+                        handler.sendEmptyMessageDelayed(R.id.userUrl,500);
+
+                        SharedPreferences sp = SharedUtil.getSharedPreferences(SettingActivity.this);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("username", nickName);
+                        editor.putString("userIconUrl", userIconUrl);
+                        editor.commit();
+
+                    }
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
+
+            }
+
+            @Override
+            public void onCancel() {
+                // TODO Auto-generated method stub
+
+            }
+        };
+    }
+
+    private void login() {
+        if (!mTencent.isSessionValid()) {
+            mTencent.login(SettingActivity.this, scope, loginListener);
+
+        }else {
+            mTencent.logout(SettingActivity.this);
+        }
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_API) {
+            if (resultCode == Constants.RESULT_LOGIN) {
+                Tencent.handleResultData(data, loginListener);
+            }
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 
