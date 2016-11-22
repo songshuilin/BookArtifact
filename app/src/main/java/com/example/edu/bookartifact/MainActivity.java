@@ -231,9 +231,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         FragmentTransaction transaction = manager.beginTransaction();
-        hideFragments(transaction);
+//        hideFragments(transaction);
         switch (v.getId()) {
             case R.id.song_find:
+                hideFragments(transaction);
                 llBook.setVisibility(View.GONE);
                 if (disFragment == null) {
                     disFragment = new DiscoverFragment();
@@ -249,6 +250,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "发现", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.song_afterBook:
+                hideFragments(transaction);
                 Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
                 llBook.setVisibility(View.VISIBLE);
                 mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
@@ -256,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
                 break;
             case R.id.song_community:
+                hideFragments(transaction);
                 if (comFragment == null) {
                     comFragment = new CommunityFragment();
                     transaction.add(R.id.com_frag, comFragment);
