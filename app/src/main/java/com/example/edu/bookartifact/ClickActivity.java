@@ -2,13 +2,18 @@ package com.example.edu.bookartifact;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -19,13 +24,16 @@ import android.widget.TextView;
 
 public class ClickActivity extends Activity {
 
-    private WebView content;//展示网页的部分
+    private ScrollWebView content;//展示网页的部分
     private ImageButton back;//顶部返回按钮
     private ImageButton nav_back;//后退按钮
     private ImageButton nav_forward;//前进按钮
     private ImageButton reload;//刷新按钮
     private TextView tv_head;//标题
     private ImageButton right;
+    private Animation translate;//平移
+    private RelativeLayout lay_;
+   // private View.OnTouchListener listen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +44,51 @@ public class ClickActivity extends Activity {
         tv_head= (TextView)findViewById(R.id.tv_head);
         right=(ImageButton) findViewById(R.id.right);
         right.setVisibility(View.GONE);
-        content= (WebView)findViewById(R.id.content);
+        content= (ScrollWebView) findViewById(R.id.content);
         back=(ImageButton)findViewById(R.id.back);
         nav_back=(ImageButton)findViewById(R.id.nav_back);
         nav_forward=(ImageButton)findViewById(R.id.nav_forward);
         reload=(ImageButton)findViewById(R.id.reload);
+        lay_=(RelativeLayout) findViewById(R.id.lay_);
         //设置WebView属性，能够执行Javascript脚本
         content.getSettings().setJavaScriptEnabled(true);
         //支持内容重新布局
         content.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         //设置content自适应屏幕
         content.getSettings().setLoadWithOverviewMode(true);
+
+        content.setOnScrollChangeListener(new ScrollWebView.OnScrollChangeListener() {
+            @Override
+            public void onPageEnd(int l, int t, int oldl, int oldt) {
+                //滑动到底部
+                lay_.setVisibility(View.VISIBLE);
+                Log.i("@@@","onpageend");
+            }
+
+            @Override
+            public void onPageTop(int l, int t, int oldl, int oldt) {
+                //滑动到顶部
+                lay_.setVisibility(View.VISIBLE);
+                Log.i("@@@","onpagetop");
+            }
+
+            @Override
+            public void onScrollChanged(int l, int t, int oldl, int oldt) {
+                //滑动中
+                translate=new TranslateAnimation(0.0f,0.0f,0.0f,200.0f);
+                translate.setDuration(3000);
+                lay_.setAnimation(translate);
+                lay_.setVisibility(View.GONE);
+
+                Log.i("@@@","onscrollchanged");
+            }
+        });
+
         //设置一些按钮的点击事件监听
         nav_back.setOnClickListener(listener);
         nav_forward.setOnClickListener(listener);
         reload.setOnClickListener(listener);
         back.setOnClickListener(listener);
-
         init_();
     }
     public void init_(){
@@ -84,8 +120,18 @@ public class ClickActivity extends Activity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
+//            translate=new TranslateAnimation(0.0f,0.0f,0.0f,-100.0f);
+//            lay_.setAnimation(translate);
             return true;
         }
+
+//       private  View.OnTouchListener listen=new View.OnTouchListener() {
+//           @Override
+//           public boolean onTouch(View view, MotionEvent motionEvent) {
+//
+//               return true;
+//           }
+//       };
     }
     //点击返回键后，返回WebView的上一页面，当WebView返回到最开始的时候退出当前activity
     @Override
@@ -116,4 +162,6 @@ public class ClickActivity extends Activity {
             }
         }
     };
+
+
 }

@@ -5,38 +5,44 @@
 
     <include layout="@layout/head_layout"/>
     <!-- 中间内容按钮-->
-    <WebView
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </WebView>
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:gravity="center_vertical"
-        android:background="#B63120">
-        <!-- 后退按钮-->
-        <ImageButton
-            android:id="@+id/nav_back"
-            android:layout_width="35dp"
+        android:layout_height="match_parent">
+        <com.example.edu.bookartifact.ScrollWebView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.example.edu.bookartifact.ScrollWebView>
+        <RelativeLayout
+            android:id="@+id/lay_"
+            android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:background="@drawable/ic_nav_back_normal"/>
-        <!-- 前进按钮-->
-        <ImageButton
-            android:id="@+id/nav_forward"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_toRightOf="@id/nav_back"
-            android:background="@drawable/ic_nav_forward_normal"/>
-        <!-- 刷新按钮-->
-        <ImageButton
-            android:id="@+id/reload"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_new_reload"/>
+            android:gravity="center_vertical"
+            android:layout_alignParentBottom="true"
+            android:background="#aabbcc">
+            <!-- 后退按钮-->
+            <ImageButton
+                android:id="@+id/nav_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_nav_back_normal"/>
+            <!-- 前进按钮-->
+            <ImageButton
+                android:id="@+id/nav_forward"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_toRightOf="@id/nav_back"
+                android:background="@drawable/ic_nav_forward_normal"/>
+            <!-- 刷新按钮-->
+            <ImageButton
+                android:id="@+id/reload"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_new_reload"/>
+        </RelativeLayout>
     </RelativeLayout>
+
+
 
 </LinearLayout>

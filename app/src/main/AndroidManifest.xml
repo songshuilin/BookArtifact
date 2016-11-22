@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
 
     <application
@@ -34,6 +36,19 @@
         <activity android:name="slidingmenuActivity.LocalBookActivity"/>
         <activity android:name="slidingmenuActivity.LoginActivity"/>
         <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
+        <activity android:name=".MusicActivity"/>
+        <activity android:name=".ClickActivity"/>
+        <activity android:name=".CommunityActivity"/>
+        <activity android:name=".DiscoverActivity"/>
+        <service android:name="service.MyService">
+            <intent-filter>
+                <action android:name="music_service"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ResultForSaoYiSaoActivity"/>
+        <activity android:name="zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"/>
 
     </application>
 

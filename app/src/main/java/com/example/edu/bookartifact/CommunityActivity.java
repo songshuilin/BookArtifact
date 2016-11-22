@@ -8,6 +8,9 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import zxing.activity.CaptureActivity;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -22,6 +25,7 @@ public class CommunityActivity extends Activity {
     private RelativeLayout lay_share;
     private RelativeLayout lay_saoyisao;
     private RelativeLayout lay_girl;
+    public static String info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +50,7 @@ public class CommunityActivity extends Activity {
 
                     break;
                 case  R.id.lay_saoyisao:
-
+                    startActivityForResult(new Intent(CommunityActivity.this,CaptureActivity.class),0);
                     break;
                 case  R.id.lay_girl:
 
@@ -57,6 +61,20 @@ public class CommunityActivity extends Activity {
             }
         }
     };
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==0) {
+            if (data!=null){
+                info=data.getStringExtra("result");
+                Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+
     public void init_(){
         back=(ImageButton) findViewById(R.id.back);
         right=(ImageButton) findViewById(R.id.right);
