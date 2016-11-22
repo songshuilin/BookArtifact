@@ -10,12 +10,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -34,11 +32,6 @@ import com.tencent.tauth.UiError;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import adapter.LaunchAdAdapter;
-import butterknife.OnClick;
 import utils.SharedUtil;
 
 import static android.util.Log.i;
