@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn_song_afterBook.setOnClickListener(this);
         mBtn_song_community.setOnClickListener(this);
         mNavigationView.setNavigationItemSelectedListener(this);
+        mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
     }
 
     /**
