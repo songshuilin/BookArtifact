@@ -265,7 +265,7 @@ public class SettingActivity extends Activity {
 
             //发送一个广播
             Intent intent_sort = new Intent("MainActivity");
-            intent_sort.putExtra("save", "省流量:1、打开");
+            intent_sort.putExtra("save", "1");
             sendBroadcast(intent_sort);
 
             Toast.makeText(SettingActivity.this,"省流量打开",Toast.LENGTH_SHORT).show();
@@ -274,7 +274,7 @@ public class SettingActivity extends Activity {
 
             //发送一个广播
             Intent intent_sort = new Intent("MainActivity");
-            intent_sort.putExtra("save", "省流量:0、关闭");
+            intent_sort.putExtra("save", "0");
             sendBroadcast(intent_sort);
 
             Toast.makeText(SettingActivity.this,"省流量关闭",Toast.LENGTH_SHORT).show();
