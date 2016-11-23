@@ -3,7 +3,6 @@ package fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import com.example.edu.bookartifact.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import zxing.activity.CaptureActivity;
 import utils.SharedUtil;
 
 
@@ -90,8 +90,7 @@ public class CommunityFragment extends Fragment {
         Log.e("TAG","MODE=="+SharedUtil.getInstance(getActivity()).get_NightMode());
         return view;
     }
-
-
+    public static String info;
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
@@ -100,6 +99,7 @@ public class CommunityFragment extends Fragment {
 
                 case R.id.lay_discuss:
                     startActivity(new Intent(getActivity(), BBSActivity.class));
+
                     break;
                 case R.id.lay_music:
                     Intent intent = new Intent(getActivity(), MusicActivity.class);
@@ -114,7 +114,8 @@ public class CommunityFragment extends Fragment {
                     startActivity(intent_share);
                     break;
                 case R.id.lay_saoyisao:
-
+                    Toast.makeText(getActivity(),"扫一扫",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(),CaptureActivity.class));
                     break;
                 case R.id.lay_girl:
                     startActivity(new Intent(getActivity(), ChatActivity.class));
@@ -125,5 +126,14 @@ public class CommunityFragment extends Fragment {
         }
     };
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==0) {
+            if (data!=null){
+                info=data.getStringExtra("result");
+                Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

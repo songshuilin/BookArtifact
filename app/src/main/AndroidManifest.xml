@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".MyApplication"
@@ -60,14 +62,13 @@
         <activity android:name=".DiscoverActivity"/>
         <activity android:name=".MusicActivity"/>
         <activity android:name=".ChatActivity"/>
-        <activity android:name=".BBSActivity"/>
-        <activity android:name=".NewTopicActivity"/>
-        <activity android:name=".TopicItemContentActivity"/>
 
         <service android:name="service.MyService"/>
 
-
-
+        <activity android:name=".ResultForSaoYiSaoActivity"/>
+        <activity
+            android:name="zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"/>
     </application>
 
 </manifest>

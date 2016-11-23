@@ -8,6 +8,9 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import zxing.activity.CaptureActivity;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -49,7 +52,7 @@ public class CommunityActivity extends Activity {
 
                     break;
                 case  R.id.lay_saoyisao:
-
+                    startActivity(new Intent(CommunityActivity.this,SaoyisaoActivity.class));
                     break;
                 case  R.id.lay_girl:
                     startActivity(new Intent(CommunityActivity.this,ChatActivity.class));
@@ -61,6 +64,7 @@ public class CommunityActivity extends Activity {
             }
         }
     };
+
     public void init_(){
         back=(ImageButton) findViewById(R.id.back);
         right=(ImageButton) findViewById(R.id.right);

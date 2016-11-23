@@ -48,6 +48,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
     private AlertDialog dialog;
     private SwipeToLoadLayout swipeToLoadLayout;
     private String nextPath;
+    private  int next=1;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -55,7 +56,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
 
             switch (msg.what) {
                 case 0x1234:
-                   adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                     swipeToLoadLayout.setLoadingMore(false);
                     break;
 
@@ -158,6 +159,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
             @Override
             public void run() {
                 List<NovelBean> nextNewList = CrawlerData.getNovelList(nextPath);
+                Log.i("TAGee", "run: "+nextPath);
                 newList.addAll(nextNewList);
                 oldList.addAll(newList);
                 Message message = handler.obtainMessage();
@@ -251,7 +253,11 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
                         swipeToLoadLayout.setLoadingMore(false);
                     } else {
                         Toast.makeText(getActivity(), "刷新成功", Toast.LENGTH_SHORT).show();
-                        nextPath = nextPath(path);
+                        if (nextPath!=null){
+                            nextPath=nextPath(nextPath);
+                        }else {
+                            nextPath = nextPath(path);
+                        }
                         oldList.clear();//刷新前清空
                         getNovelNextNewList();//上拉加载下一页
                     }
@@ -277,8 +283,8 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
             String[] strings2 = strings1[1].split(".html");//strings1[1] 是 3.html
 
             String number = strings2[0];//就是匹配的数字部分  [0-9]+
-            int next = Integer.valueOf(number);
-            next++;
+             next = Integer.valueOf(number);
+             next++;
             return headUrl + next + ".html";
         }
 
