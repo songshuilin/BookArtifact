@@ -21,6 +21,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.antlr.v4.automata.ATNFactory;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -126,6 +128,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }else {
                         tv_name.setText("游客");
                     }
+                    break;
+                case 0x12345:
+                    if (!isBack){
+                        finish();
+                    }
+                    isBack=false;
                     break;
                 default:
                     break;
@@ -245,6 +253,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EventBus.getDefault().unregister(this);//取消注册
         MyApplication.screenManager1.popActivity(this);
         super.onDestroy();
+    }
+
+    boolean isBack=false;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+         switch (keyCode){
+                     case KeyEvent.KEYCODE_BACK:
+                         i("TAG", "onKeyDown" + "");
+                       isBack=!isBack;
+                         if (isBack){
+                         Toast.makeText(MainActivity.this,"再按一次退出应用程序",Toast.LENGTH_SHORT).show();
+                             handler.sendEmptyMessageDelayed(0x12345,1000);
+                         }else {
+                             handler.sendEmptyMessage(0x12345);
+                         }
+                        break;
+                     default:
+                         break;
+                 }
+
+        return false;
     }
 
     /**

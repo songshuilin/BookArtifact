@@ -11,13 +11,15 @@
         android:layout_height="80dp"
         android:background="@color/colorTitle"
         android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
         android:padding="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="back"
-            android:src="@drawable/ab_back" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_back_img"
+            android:onClick="back" />
 
         <LinearLayout
             android:layout_width="match_parent"
