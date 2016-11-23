@@ -11,7 +11,7 @@
         android:id="@+id/lay_music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 本地音乐图标-->
         <ImageView
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="本地音乐"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/tweet"/>
@@ -35,7 +35,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/tv_music"
             android:layout_alignLeft="@id/tv_music"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="#9A9496"/>
     </RelativeLayout>
     <TextView
@@ -50,7 +50,7 @@
         android:id="@+id/lay_discuss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 综合讨论区图标-->
         <ImageView
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="综合讨论区"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/discu"/>
@@ -74,15 +74,15 @@
             android:layout_height="1dp"
             android:layout_below="@id/tv_discu"
             android:layout_alignLeft="@id/tv_discu"
-            android:layout_marginTop="20dp"
-            android:background="#F6F7FC"/>
+            android:layout_marginTop="15dp"
+            android:background="#9A9496"/>
     </RelativeLayout>
     <!-- 分享本软件的相对布局框架-->
     <RelativeLayout
         android:id="@+id/lay_share"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
+        android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 分享本软件图标-->
         <ImageView
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="分享本软件"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/com"/>
@@ -106,7 +106,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/tv_com"
             android:layout_alignLeft="@id/tv_com"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="#9A9496"/>
     </RelativeLayout>
     <!-- 扫一扫的相对布局框架-->
@@ -114,7 +114,7 @@
         android:id="@+id/lay_saoyisao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 扫一扫图标-->
         <ImageView
@@ -128,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="扫一扫"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/help"/>
@@ -138,15 +138,15 @@
             android:layout_height="1dp"
             android:layout_below="@id/tv_help"
             android:layout_alignLeft="@id/tv_help"
-            android:layout_marginTop="20dp"
-            android:background="#F6F7FC"/>
+            android:layout_marginTop="15dp"
+            android:background="#9A9496"/>
     </RelativeLayout>
     <!-- 智能客服的相对布局框架-->
     <RelativeLayout
         android:id="@+id/lay_girl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
+        android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 智能客服图标-->
         <ImageView
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="智能客服"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/gir"/>
@@ -170,7 +170,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/tv_gir"
             android:layout_alignLeft="@id/tv_gir"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="#9A9496"/>
     </RelativeLayout>
 </LinearLayout>
