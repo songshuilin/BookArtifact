@@ -43,6 +43,8 @@ import bean.NovelType;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import event.NightMode;
+import event.Save;
 import fragment.CommunityFragment;
 import fragment.DiscoverFragment;
 import fragment.ListBookFragment;
@@ -351,14 +353,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     item.setTitle("夜间模式");
                     sharedUtil.put_NightMode("1");
                     ll_content.setBackgroundColor(getResources().getColor(R.color.background_night));
+                    EventBus.getDefault().post(new NightMode(true));
 //                    ll_community.setBackgroundColor(getResources().getColor(R.color.background_night));
 //                    disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_night));
+
                     Toast.makeText(MainActivity.this, "夜间模式开启", Toast.LENGTH_SHORT).show();
                 }else {
                     sharedUtil.put_NightMode("0");
                     item.setIcon(R.drawable.theme_night);
                     item.setTitle("日间模式");
                     ll_content.setBackgroundColor(getResources().getColor(R.color.background_day));
+                    EventBus.getDefault().post(new NightMode(false));
 //                    ll_community.setBackgroundColor(getResources().getColor(R.color.background_day));
 //                    disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_day));
                     Toast.makeText(MainActivity.this, "日间模式开启", Toast.LENGTH_SHORT).show();
