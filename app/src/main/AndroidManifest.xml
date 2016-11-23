@@ -58,12 +58,15 @@
         <activity android:name="slidingmenuActivity.LoginActivity"/>
         <activity android:name="slidingmenuActivity.WifiTranportActivity"/>
         <activity android:name=".ClickActivity"/>
-        <activity android:name=".DiscoverActivity"/>
         <activity android:name=".MusicActivity"/>
         <activity android:name=".ChatActivity"/>
         <activity android:name=".BBSActivity"/>
 
-        <service android:name="service.MyService"/>
+        <service android:name="service.MyService">
+            <intent-filter>
+                <action android:name="music_service"/>
+            </intent-filter>
+        </service>
 
         <activity android:name=".ResultForSaoYiSaoActivity"/>
         <activity

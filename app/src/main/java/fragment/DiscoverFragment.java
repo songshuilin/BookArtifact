@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import com.example.edu.bookartifact.ClickActivity;
 
 import com.example.edu.bookartifact.R;
-import com.iflytek.cloud.resource.Resource;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -21,20 +20,23 @@ import butterknife.ButterKnife;
 import event.NightMode;
 import utils.SharedUtil;
 
-
+/**
+ * 发现模块的主界面，展示了游戏中心、咪咕阅读、一元夺宝、情感问答四个模块，并实现它们的点击跳转
+ * Created by Administrator on 2016/11/17.
+ */
 public class DiscoverFragment extends Fragment {
 
     private View view;
 
 
     @BindView(R.id.onclick_layout1)
-    RelativeLayout onclickLayout1;
+    RelativeLayout onclickLayout1;//游戏中心
     @BindView(R.id.onclick_layout2)
-    RelativeLayout onclickLayout2;
+    RelativeLayout onclickLayout2;//咪咕阅读
     @BindView(R.id.onclick_layout3)
-    RelativeLayout onclickLayout3;
+    RelativeLayout onclickLayout3;//一元夺宝
     @BindView(R.id.onclick_layout4)
-    RelativeLayout onclickLayout4;
+    RelativeLayout onclickLayout4;//情感问答
     public static int flag=1;//判断点击事件的标识
 
     public DiscoverFragment() {

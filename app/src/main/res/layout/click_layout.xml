@@ -34,20 +34,12 @@
                 android:layout_height="35dp"
                 android:layout_toRightOf="@id/nav_back"
                 android:background="@drawable/ic_nav_forward_normal"/>
-            <!--
             <ImageButton
-                android:id="@+id/lishi"
+                android:id="@+id/f_share"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_toRightOf="@id/nav_forward"
-                android:background="@drawable/lishi"/>
-            <ImageButton
-                android:id="@+id/fenxiang"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_toRightOf="@id/lishi"
-                android:background="@drawable/fenxiang"/>
-                -->
+                android:text="分享"/>
             <!-- 刷新按钮-->
             <ImageButton
                 android:id="@+id/reload"
