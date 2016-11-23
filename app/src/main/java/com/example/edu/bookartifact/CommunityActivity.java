@@ -39,6 +39,8 @@ public class CommunityActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()){
                 case  R.id.lay_discuss:
+                    startActivity(new Intent(CommunityActivity.this,BBSActivity.class));
+
 
                 break;
                 case  R.id.lay_music:

@@ -1,7 +1,10 @@
 package fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -52,7 +55,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
 
             switch (msg.what) {
                 case 0x1234:
-                    adapter.notifyDataSetChanged();
+                   adapter.notifyDataSetChanged();
                     swipeToLoadLayout.setLoadingMore(false);
                     break;
 
@@ -84,7 +87,6 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
             }
         }
     };
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

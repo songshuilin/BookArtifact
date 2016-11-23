@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_topic_item_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TopicItemContentActivity"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/head_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@id/topic_icon"
+            android:layout_width="@dimen/topic_icon_size"
+            android:layout_height="@dimen/topic_icon_size"
+            android:src="@color/colorPrimaryDark"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp">
+            <TextView
+                android:id="@id/tv_topic_username"
+                android:paddingTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="123123"/>
+            <TextView
+                android:id="@id/tv_topic_time"
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1999-12-11"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@id/tv_topic_title"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="最值得阅读的十大程序员烧脑悬疑小说"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@id/tv_topic_content"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.我和春田花花幼稚园的故事"
+        />
+
+
+</LinearLayout>

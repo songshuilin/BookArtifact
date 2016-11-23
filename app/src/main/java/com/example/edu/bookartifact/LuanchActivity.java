@@ -9,6 +9,8 @@ import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -66,6 +68,7 @@ public class LuanchActivity extends Activity {
     private SharedPreferences sp ;
 
     boolean isJump;
+    private TranslateAnimation mHiddenAction;
 
 
     @Override
@@ -74,6 +77,32 @@ public class LuanchActivity extends Activity {
         setContentView(R.layout.activity_luanch);
          MyApplication.screenManager1.pushActivity(this);
         ButterKnife.bind(this);
+        mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, -1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                0.0f);
+        mHiddenAction.setDuration(1000);
+        mHiddenAction.setFillAfter(true);
+
+
+        mHiddenAction.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                llLaunchAd.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+
+            }
+        });
+
         sp = SharedUtil.getSharedPreferences(LuanchActivity.this);
         nickName = sp.getString("username","0");
         userIconUrl = sp.getString("userIconUrl","0");
@@ -110,7 +139,9 @@ public class LuanchActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case R.id.activity_luanch:
-                    llLaunchAd.setVisibility(View.GONE);
+                    llLaunchAd.startAnimation(mHiddenAction);
+                    //mHiddenAction.setStartOffset(9000);
+
 
                     break;
                 case R.id.btn_login:
@@ -128,6 +159,8 @@ public class LuanchActivity extends Activity {
                 case R.id.above:
                     if (!isJump){
                         isJump = false;
+                        i("@@@", "handleMessage" + "ssssssssssss");
+
                         startActivity(new Intent(LuanchActivity.this,MainActivity.class));
                         finish();
 
@@ -143,7 +176,8 @@ public class LuanchActivity extends Activity {
 
     private void ignore() {
         if (isLogined) {
-            handler.sendEmptyMessageDelayed(R.id.above,4000);
+            llLaunchAd.startAnimation(mHiddenAction);
+            handler.sendEmptyMessageDelayed(R.id.above,800);
         }else {
 
 
@@ -183,10 +217,12 @@ public class LuanchActivity extends Activity {
 
     @OnClick(R.id.btn_ignore)
     public void onClick() {
+        llLaunchAd.startAnimation(mHiddenAction);
 
-        llLaunchAd.setVisibility(View.GONE);
         if (isLogined){
             isJump = true;
+            llLaunchAd.startAnimation(mHiddenAction);
+
             startActivity(new Intent(LuanchActivity.this,MainActivity.class));
             finish();
 

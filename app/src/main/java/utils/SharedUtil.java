@@ -53,7 +53,8 @@ public class SharedUtil {
 	public String get_sort(){
 		return getSharedPreferences(context).getString("sort","0");
 	}
-	//获取 是否为省流量模式
+
+	//获取 是否为省流量模式 1表示省流量模式开启  0表示省流量模式关闭
 	public String get_save(){
 		return getSharedPreferences(context).getString("save","0");
 	}
@@ -63,6 +64,18 @@ public class SharedUtil {
 	public String get_userIconUrl(){
 		return getSharedPreferences(context).getString("userIconUrl","0");
 	}
+
+
+	//设置夜间模式
+	public SharedUtil put_NightMode(String values) {
+		getEditor(context).putString("nightMode", values).commit();
+		return sharedUtil;
+	};
+	//获取夜间模式信息 1表示夜间模式  0表示日间模式
+	public String get_NightMode(){
+		return getSharedPreferences(context).getString("nightMode","0");
+	}
+
 
 
 }

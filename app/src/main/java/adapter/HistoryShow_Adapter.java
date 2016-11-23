@@ -8,6 +8,7 @@ import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+
 import com.example.edu.bookartifact.R;
 
 import java.util.List;

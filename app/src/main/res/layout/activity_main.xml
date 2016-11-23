@@ -122,6 +122,7 @@
 
     <!--侧滑的的view-->
     <android.support.design.widget.NavigationView
+        android:background="@drawable/background"
         android:id="@+id/nv_main_navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

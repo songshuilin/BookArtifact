@@ -29,6 +29,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHodl
     public RecyclerAdapter(List<NovelBean> list, Context context) {
         this.list = list;
         this.context = context;
+
     }
 
     @Override
@@ -110,4 +111,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHodl
             novelImg = (ImageView) itemView.findViewById(R.id.novelImg);
         }
     }
+
 }
