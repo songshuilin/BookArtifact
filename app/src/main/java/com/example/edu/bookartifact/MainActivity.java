@@ -182,9 +182,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View headerView = mNavigationView.getHeaderView(0);
         circleLoginView = (CircleImageView) headerView.findViewById(R.id.song_login_Img);
         tv_name = (TextView) headerView.findViewById(R.id.song_login_username);
-        mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
+        mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
         mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
         mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+        mBtn_song_afterBook.setTextColor(getResources().getColor(R.color.background_day));
 
     }
 
@@ -260,7 +261,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onKeyDown(int keyCode, KeyEvent event) {
          switch (keyCode){
                      case KeyEvent.KEYCODE_BACK:
-                         i("TAG", "onKeyDown" + "");
                        isBack=!isBack;
                          if (isBack){
                          Toast.makeText(MainActivity.this,"再按一次退出应用程序",Toast.LENGTH_SHORT).show();
@@ -296,19 +296,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     transaction.show(disFragment);
                 }
-                mBtn_song_find.setBackgroundResource(R.drawable.onclick_shape);
-                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+//                mBtn_song_find.setBackgroundResource(R.drawable.onclick_shape);
+//                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
+//                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_find.setTextColor(getResources().getColor(R.color.check_tv_color));
+                mBtn_song_afterBook.setTextColor(getResources().getColor(R.color.uncheck_tv_color));
+                mBtn_song_community.setTextColor(getResources().getColor(R.color.uncheck_tv_color));
 
-                Toast.makeText(MainActivity.this, "发现", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "发现", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.song_afterBook:
                 hideFragments(transaction);
-                Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "追书", Toast.LENGTH_SHORT).show();
                 llBook.setVisibility(View.VISIBLE);
-                mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
-                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+//                mBtn_song_afterBook.setBackgroundResource(R.drawable.onclick_shape);
+//                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
+//                mBtn_song_community.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_find.setTextColor(getResources().getColor(R.color.uncheck_tv_color));
+                mBtn_song_afterBook.setTextColor(getResources().getColor(R.color.check_tv_color));
+                mBtn_song_community.setTextColor(getResources().getColor(R.color.uncheck_tv_color));
                 break;
             case R.id.song_community:
                 hideFragments(transaction);
@@ -320,18 +326,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 llBook.setVisibility(View.GONE);
-                mBtn_song_community.setBackgroundResource(R.drawable.onclick_shape);
-                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
-                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
-                Toast.makeText(MainActivity.this, "社区", Toast.LENGTH_SHORT).show();
+//                mBtn_song_community.setBackgroundResource(R.drawable.onclick_shape);
+//                mBtn_song_find.setBackgroundResource(R.drawable.default_shape);
+//                mBtn_song_afterBook.setBackgroundResource(R.drawable.default_shape);
+                mBtn_song_find.setTextColor(getResources().getColor(R.color.uncheck_tv_color));
+                mBtn_song_afterBook.setTextColor(getResources().getColor(R.color.uncheck_tv_color));
+                mBtn_song_community.setTextColor(getResources().getColor(R.color.check_tv_color));
+//                Toast.makeText(MainActivity.this, "社区", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.search:
-                Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();
                 Intent intent_chen_search = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent_chen_search);
                 break;
             case R.id.usernameImg:
-                Toast.makeText(MainActivity.this, "用户名的头像", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "用户名的头像", Toast.LENGTH_SHORT).show();
                 mDl.openDrawer(GravityCompat.START);
                 break;
 
@@ -359,7 +368,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.scanLocalBooks:
-                Toast.makeText(MainActivity.this, "扫描本地书籍", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "扫描本地书籍", Toast.LENGTH_SHORT).show();
                 Intent intent_chen_localBooks = new Intent(MainActivity.this, LocalBookActivity.class);
                 startActivity(intent_chen_localBooks);
                 mDl.closeDrawers();//关闭侧滑栏
@@ -371,7 +380,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.feedback:
-                Toast.makeText(MainActivity.this, "意见反馈", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "意见反馈", Toast.LENGTH_SHORT).show();
                 Intent intent_chen_feedback = new Intent(MainActivity.this, FeedBackActivity.class);
                 startActivity(intent_chen_feedback);
                 mDl.closeDrawers();//关闭侧滑栏
@@ -379,28 +388,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.nightMode:
                 if (sharedUtil.get_NightMode().toString().equals("0")){
                     item.setIcon(R.drawable.theme_day);
-                    item.setTitle("夜间模式");
+                    item.setTitle("日间模式");
                     sharedUtil.put_NightMode("1");
                     ll_content.setBackgroundColor(getResources().getColor(R.color.background_night));
                     EventBus.getDefault().post(new NightMode(true));
-//                    ll_community.setBackgroundColor(getResources().getColor(R.color.background_night));
-//                    disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_night));
-
+                    mNavigationView.setBackgroundColor(getResources().getColor(R.color.background_night));
                     Toast.makeText(MainActivity.this, "夜间模式开启", Toast.LENGTH_SHORT).show();
                 }else {
                     sharedUtil.put_NightMode("0");
                     item.setIcon(R.drawable.theme_night);
-                    item.setTitle("日间模式");
+                    item.setTitle("夜间模式");
                     ll_content.setBackgroundColor(getResources().getColor(R.color.background_day));
+                    mNavigationView.setBackgroundColor(getResources().getColor(R.color.background_day));
                     EventBus.getDefault().post(new NightMode(false));
-//                    ll_community.setBackgroundColor(getResources().getColor(R.color.background_day));
-//                    disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_day));
                     Toast.makeText(MainActivity.this, "日间模式开启", Toast.LENGTH_SHORT).show();
                 }
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
             case R.id.set:
-                Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
                 Intent intent_chen_setting = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent_chen_setting);
                 mDl.closeDrawers();//关闭侧滑栏

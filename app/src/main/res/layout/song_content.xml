@@ -19,8 +19,8 @@
             android:background="@color/colorTitle"
             app:tabIndicatorColor="#00ffff"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="#0000ff"
-            app:tabTextColor="#fff"
+            app:tabSelectedTextColor="#fff"
+            app:tabTextColor="#000"
             />
 
 
