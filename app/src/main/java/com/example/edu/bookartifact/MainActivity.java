@@ -21,9 +21,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CircleImageView circleLoginView;
     private TextView tv_name;
     private SharedUtil sharedUtil;
+    private LinearLayout ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         EventBus.getDefault().register(this);//注册事件（eventbus）
         initFrag();
-        initViews();//初始化view
-        CrawlerData.getNovelTypeList();//获取小说的类型，也就是分类
-
         //夜间模式默认设置 （日间模式）
         sharedUtil = SharedUtil.getInstance(MainActivity.this);
         sharedUtil.put_NightMode("0");//默认为日间模式
 
+        initViews();//初始化view
+        CrawlerData.getNovelTypeList();//获取小说的类型，也就是分类
 
     }
 
@@ -148,6 +150,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDl = (DrawerLayout) findViewById(R.id.dl);
 
 
+        ll_content= (LinearLayout) findViewById(R.id.ll_book);
+
+        if (sharedUtil.get_NightMode().toString().equals("0")){
+            ll_content.setBackgroundColor(getResources().getColor(R.color.background_day));
+//            ll_community.setBackgroundColor(getResources().getColor(R.color.background_day));
+//            disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }else {
+            ll_content.setBackgroundColor(getResources().getColor(R.color.background_night));
+//            ll_community.setBackgroundColor(getResources().getColor(R.color.background_night));
+//            disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }
 
 
         mSearchImg.setOnClickListener(this);
@@ -271,7 +284,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (comFragment == null) {
                     comFragment = new CommunityFragment();
                     transaction.add(R.id.com_frag, comFragment);
-
                 } else {
                     transaction.show(comFragment);
                 }
@@ -297,6 +309,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void hideFragments(FragmentTransaction transaction) {
+
         if (disFragment != null) {
             transaction.hide(disFragment);
         }
@@ -334,20 +347,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.nightMode:
                 if (sharedUtil.get_NightMode().toString().equals("0")){
-                    Log.e("TAG","oldmode==="+sharedUtil.get_NightMode().toString()+"    点击前模式=日间模式");
                     item.setIcon(R.drawable.theme_day);
                     item.setTitle("夜间模式");
                     sharedUtil.put_NightMode("1");
-                    Log.e("TAG","newmode==="+sharedUtil.get_NightMode().toString()+"    点击后模式=夜间模式");
+                    ll_content.setBackgroundColor(getResources().getColor(R.color.background_night));
+//                    ll_community.setBackgroundColor(getResources().getColor(R.color.background_night));
+//                    disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_night));
                     Toast.makeText(MainActivity.this, "夜间模式开启", Toast.LENGTH_SHORT).show();
                 }else {
-                    Log.e("TAG","oldmode==="+sharedUtil.get_NightMode().toString()+"    点击前模式=夜间模式");
                     sharedUtil.put_NightMode("0");
                     item.setIcon(R.drawable.theme_night);
                     item.setTitle("日间模式");
-                    Log.e("TAG","newmode==="+sharedUtil.get_NightMode().toString()+"    点击后模式=日间模式");
+                    ll_content.setBackgroundColor(getResources().getColor(R.color.background_day));
+//                    ll_community.setBackgroundColor(getResources().getColor(R.color.background_day));
+//                    disFramLayout.setBackgroundColor(getResources().getColor(R.color.background_day));
                     Toast.makeText(MainActivity.this, "日间模式开启", Toast.LENGTH_SHORT).show();
-
                 }
                 mDl.closeDrawers();//关闭侧滑栏
                 break;

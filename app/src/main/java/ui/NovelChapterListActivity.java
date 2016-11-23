@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import adapter.ChapterListAdapter;
 import bean.NovelChapter;
 import utils.CrawlerData;
 import utils.DividerItemDecoration;
+import utils.SharedUtil;
 
 /** 作者 : 宋水林
  * 时间 ：2016-11-15
@@ -35,6 +37,7 @@ public class NovelChapterListActivity extends AppCompatActivity {
     private ChapterListAdapter adapter;
     private AlertDialog dialog;
     private ArrayList<String> chaptersUrl=new ArrayList<>();
+    private LinearLayout ll_novel_chapter;
     Handler handler = new Handler() {
 
         @Override
@@ -86,6 +89,12 @@ public class NovelChapterListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novel_chapter_list);
         initViews();
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_novel_chapter.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_novel_chapter.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
         dialog= new AlertDialog.Builder(this).create();
         dialog.setCancelable(false);
         dialog.setMessage("拼命加载中...");
@@ -110,6 +119,7 @@ public class NovelChapterListActivity extends AppCompatActivity {
         mTvTitle = (TextView) findViewById(R.id.title);
         mAuthor= (TextView) findViewById(R.id.author);
         mRecycler= (RecyclerView) findViewById(R.id.chapter_recycler);
+        ll_novel_chapter= (LinearLayout) findViewById(R.id.activity_novel_chapter_list);
     }
 
     /**

@@ -45,7 +45,8 @@ public class DiscoverFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_discover_layout, container, false);
-        view.setBackgroundColor(getResources().getColor(R.color.background_night));
+
+//        view.setBackgroundColor(getResources().getColor(R.color.background_night));
         // Inflate the layout for this fragment
         ButterKnife.bind(this, view);
         onclickLayout1.setOnClickListener(listener);

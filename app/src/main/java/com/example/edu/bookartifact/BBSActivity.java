@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -69,6 +70,7 @@ public class BBSActivity extends Activity implements OnRefreshListener {
     private String path;
     private SwipeToLoadLayout refresh;
     private boolean isRefesh = false;
+    private LinearLayout ll_bbs;
 
 
     @Override
@@ -78,6 +80,13 @@ public class BBSActivity extends Activity implements OnRefreshListener {
         setContentView(R.layout.activity_bbs);
         ButterKnife.bind(this);
 
+       ll_bbs= (LinearLayout) findViewById(R.id.ll_bbs);
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_bbs.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_bbs.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
 
         Loading();
         refresh = (SwipeToLoadLayout) findViewById(R.id.refresh);
