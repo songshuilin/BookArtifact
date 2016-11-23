@@ -76,7 +76,7 @@ public class ClickActivity extends Activity {
             public void onScrollChanged(int l, int t, int oldl, int oldt) {
                 //滑动中
                 translate=new TranslateAnimation(0.0f,0.0f,0.0f,200.0f);
-                translate.setDuration(3000);
+                translate.setDuration(2000);
                 lay_.setAnimation(translate);
                 lay_.setVisibility(View.GONE);
 

@@ -22,7 +22,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.edu.bookartifact.CommunityActivity;
 import com.example.edu.bookartifact.R;
 import com.example.edu.bookartifact.ResultForSaoYiSaoActivity;
 import com.google.zxing.BarcodeFormat;
@@ -30,6 +29,7 @@ import com.google.zxing.Result;
 import java.io.IOException;
 import java.util.Vector;
 
+import fragment.CommunityFragment;
 import zxing.camera.CameraManager;
 import zxing.decoding.CaptureActivityHandler;
 import zxing.decoding.InactivityTimer;
@@ -168,7 +168,7 @@ public class CaptureActivity extends Activity implements Callback {
 		}else {
 //			System.out.println("Result:"+resultString);
 //			Intent resultIntent = new Intent();
-			CommunityActivity.info = resultString;
+			CommunityFragment.info = resultString;
 			Intent resultIntent = new Intent(CaptureActivity.this,ResultForSaoYiSaoActivity.class);
 //			Bundle bundle = new Bundle();
 //			bundle.putString("result", resultString);

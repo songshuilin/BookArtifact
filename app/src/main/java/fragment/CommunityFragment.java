@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ import com.example.edu.bookartifact.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+import zxing.activity.CaptureActivity;
 
 
 public class CommunityFragment extends Fragment {
@@ -87,6 +86,7 @@ public class CommunityFragment extends Fragment {
         }
         return view;
     }
+    public static String info;
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
@@ -108,7 +108,8 @@ public class CommunityFragment extends Fragment {
                     startActivity(intent_share);
                     break;
                 case R.id.lay_saoyisao:
-
+                    Toast.makeText(getActivity(),"扫一扫",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(),CaptureActivity.class));
                     break;
                 case R.id.lay_girl:
                     startActivity(new Intent(getActivity(), ChatActivity.class));
@@ -119,5 +120,14 @@ public class CommunityFragment extends Fragment {
         }
     };
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==0) {
+            if (data!=null){
+                info=data.getStringExtra("result");
+                Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

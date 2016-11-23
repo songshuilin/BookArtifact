@@ -8,6 +8,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import fragment.CommunityFragment;
+
 /**
  * Created by Administrator on 2016/11/21.
  */
@@ -29,7 +31,7 @@ public class ResultForSaoYiSaoActivity extends Activity {
         //设置content自适应屏幕
         webview_.getSettings().setLoadWithOverviewMode(true);
         webview_.setWebViewClient(new Client());
-        webview_.loadUrl(CommunityActivity.info);
+        webview_.loadUrl(CommunityFragment.info);
     }
     private class Client extends WebViewClient{
         @Override
