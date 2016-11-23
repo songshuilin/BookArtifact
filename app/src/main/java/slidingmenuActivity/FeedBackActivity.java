@@ -5,11 +5,13 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.edu.bookartifact.R;
 
 import utils.OpenAndroidApp;
+import utils.SharedUtil;
 
 
 /**
@@ -17,10 +19,18 @@ import utils.OpenAndroidApp;
  */
 
 public class FeedBackActivity extends Activity {
+    private LinearLayout ll_feedback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feedback_layout);
+        ll_feedback= (LinearLayout) findViewById(R.id.ll_feedback);
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_feedback.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_feedback.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
     }
 
     /**

@@ -60,6 +60,7 @@
         <activity android:name=".ClickActivity"/>
         <activity android:name=".MusicActivity"/>
         <activity android:name=".ChatActivity"/>
+        <activity android:name=".BBSActivity"/>
 
         <service android:name="service.MyService">
             <intent-filter>

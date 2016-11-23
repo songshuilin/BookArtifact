@@ -43,6 +43,7 @@ import static com.example.edu.bookartifact.MyApplication.userIconUrl;
 
 /**
  * Created by 陈师表 on 2016/11/14.
+ * 设置
  */
 
 public class SettingActivity extends Activity {
@@ -66,6 +67,7 @@ public class SettingActivity extends Activity {
     private String scope;
     private IUiListener loginListener;
     private IUiListener userInfoListener;
+    private LinearLayout ll_setting;
 
 
     @Override
@@ -89,6 +91,14 @@ public class SettingActivity extends Activity {
         ll_change= (LinearLayout) findViewById(R.id.lin_change);
         ll_logout= (LinearLayout) findViewById(R.id.lin_logout);
         tv_book_by = (TextView) findViewById(R.id.tv_sort_by);//书架排序设置
+        ll_setting= (LinearLayout) findViewById(R.id.ll_setting);
+
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_setting.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_setting.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
 
         //点击事件
         ll_book_sort.setOnClickListener(clickListener);
@@ -472,7 +482,6 @@ public class SettingActivity extends Activity {
     private void login() {
         if (!mTencent.isSessionValid()) {
             mTencent.login(SettingActivity.this, scope, loginListener);
-
         }else {
             mTencent.logout(SettingActivity.this);
         }

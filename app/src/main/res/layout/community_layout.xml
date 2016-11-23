@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--这是社区模块的UI，根据id: lay_music、lay_discuss、lay_share、lay_saoyisao、lay_girl来添加点击事件-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_comnunity"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

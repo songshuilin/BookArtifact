@@ -12,6 +12,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ import ui.NovelDescActivity;
 import utils.GetDate_;
 import utils.IsNetworkAvailable;
 import utils.Search_CrawlerDate;
+import utils.SharedUtil;
 
 
 /**
@@ -59,6 +61,7 @@ public class SearchActivity extends Activity {
     private SearchResultAdapter adapter_sr;//搜索结果
     private List<HistoryBean> list_ = new ArrayList<HistoryBean>();//历史记录
     private List<SearchNovelBean>list_sr=new ArrayList<SearchNovelBean>();//搜索结果
+    private LinearLayout ll_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,14 @@ public class SearchActivity extends Activity {
         lv_history_show = (ListView) findViewById(R.id.lv_history_show);
         lv_search_result= (ListView) findViewById(R.id.lv_search_result);
         btn_search= (Button) findViewById(R.id.btn_search);
+        ll_search= (LinearLayout) findViewById(R.id.ll_search);
+
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_search.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_search.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
 
         //历史纪录的点击事件
         lv_history_show.setOnItemClickListener(itemClickListener);

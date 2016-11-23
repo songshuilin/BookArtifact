@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import java.util.List;
 
 import adapter.LocalBooksAdapter;
 import bean.LocalBooksBean;
+import utils.SharedUtil;
 
 
 /**
@@ -47,11 +49,19 @@ public class LocalBookActivity extends Activity {
     private AlertDialog dialog;
     private List<LocalBooksBean> list_=new ArrayList<LocalBooksBean>();
     private LocalBooksAdapter adapter;
+    private LinearLayout ll_localbooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.localbook_layout);
+        ll_localbooks= (LinearLayout) findViewById(R.id.ll_localbooks);
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_localbooks.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_localbooks.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
         lv_ = (ListView) findViewById(R.id.listview);
         lv_.setOnItemClickListener(itemClickListener);//设置点击事件
         name = new ArrayList();

@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import utils.SharedUtil;
 
 
 public class ChatActivity extends Activity {
+    private LinearLayout ll_chat;
 
 
     @BindView(R.id.back)
@@ -70,6 +72,13 @@ public class ChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
+        ll_chat= (LinearLayout) findViewById(R.id.activity_chat);
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_chat.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_chat.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
         init();
     }
 

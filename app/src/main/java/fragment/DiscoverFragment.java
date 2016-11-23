@@ -12,14 +12,21 @@ import com.example.edu.bookartifact.ClickActivity;
 
 import com.example.edu.bookartifact.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import event.NightMode;
+import utils.SharedUtil;
 
 /**
  * 发现模块的主界面，展示了游戏中心、咪咕阅读、一元夺宝、情感问答四个模块，并实现它们的点击跳转
  * Created by Administrator on 2016/11/17.
  */
 public class DiscoverFragment extends Fragment {
+
+    private View view;
 
 
     @BindView(R.id.onclick_layout1)
@@ -44,18 +51,37 @@ public class DiscoverFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.f_discover_layout, container, false);
-        view.setBackgroundColor(getResources().getColor(R.color.background_night));
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        //注册EvenBus
+        EventBus.getDefault().register(this);
+
+        view = inflater.inflate(R.layout.f_discover_layout, container, false);
+
+//        view.setBackgroundColor(getResources().getColor(R.color.background_night));
         // Inflate the layout for this fragment
         ButterKnife.bind(this, view);
         onclickLayout1.setOnClickListener(listener);
         onclickLayout2.setOnClickListener(listener);
         onclickLayout3.setOnClickListener(listener);
         onclickLayout4.setOnClickListener(listener);
+        if ("1".equals(SharedUtil.getInstance(getActivity()).get_NightMode())){
+            view.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            view.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
         return view;
     }
+
+    @Subscribe
+    public void changeMode(NightMode mode){
+        boolean isNight=mode.getMode_();
+        if (isNight){
+            view.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            view.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
+    }
+
     //控件的监听事件
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override

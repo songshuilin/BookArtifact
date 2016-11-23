@@ -9,13 +9,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.edu.bookartifact.R;
 import com.squareup.picasso.Picasso;
 import utils.CrawlerData;
 import bean.NovelDesc;
-
+import utils.SharedUtil;
 
 
 /** 作者 : 宋水林
@@ -28,6 +29,7 @@ public class NovelDescActivity extends AppCompatActivity {
     private ImageView img;
     private NovelDesc novelDesc;
     private AlertDialog dialog;
+    private LinearLayout ll_novel_desc;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -53,6 +55,12 @@ public class NovelDescActivity extends AppCompatActivity {
         String novelPath = getIntent().getStringExtra("novelPath");
         getNovel(novelPath);
         initViews();
+        //夜间模式
+        if ("1".equals(SharedUtil.getInstance(this).get_NightMode())){
+            ll_novel_desc.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            ll_novel_desc.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
         dialog= new AlertDialog.Builder(this).create();
         dialog.setCancelable(false);
         dialog.setMessage("拼命加载中...");
@@ -64,6 +72,7 @@ public class NovelDescActivity extends AppCompatActivity {
      */
  public void  initViews(){
      img= (ImageView) findViewById(R.id.novelImg);
+     ll_novel_desc= (LinearLayout) findViewById(R.id.activity_novel_desc);
  }
 
     /**
