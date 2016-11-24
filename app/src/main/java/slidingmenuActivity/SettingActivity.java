@@ -30,8 +30,10 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
+import event.Save;
 import utils.SharedUtil;
 
 import static android.util.Log.i;
@@ -276,11 +278,11 @@ public class SettingActivity extends Activity {
             Intent intent_sort = new Intent("MainActivity");
             intent_sort.putExtra("save", "1");
             sendBroadcast(intent_sort);
-
+            EventBus.getDefault().post(new Save(true));
             Toast.makeText(SettingActivity.this,"省流量打开",Toast.LENGTH_SHORT).show();
         }else {
             sharedUtil.put_saveflow("0");
-
+            EventBus.getDefault().post(new Save(false));
             //发送一个广播
             Intent intent_sort = new Intent("MainActivity");
             intent_sort.putExtra("save", "0");

@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_name;
     private SharedUtil sharedUtil;
     private LinearLayout ll_content;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case 0x12345:
                     if (!isBack){
                         finish();
+                        SharedUtil.getInstance(MainActivity.this).put_saveflow("0");
                     }
                     isBack=false;
                     break;
@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSearchImg = (ImageView) findViewById(R.id.search);
         mUsernameImg = (ImageView) findViewById(R.id.usernameImg);
         mDl = (DrawerLayout) findViewById(R.id.dl);
-
 
         ll_content= (LinearLayout) findViewById(R.id.ll_book);
 
