@@ -3,6 +3,9 @@ package com.example.edu.bookartifact;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.webkit.WebView;
 
 /**
@@ -42,7 +45,6 @@ public class ScrollWebView extends WebView {
         }
     }
     public void setOnScrollChangeListener(OnScrollChangeListener listener) {
-
         this.listener = listener;
 
     }

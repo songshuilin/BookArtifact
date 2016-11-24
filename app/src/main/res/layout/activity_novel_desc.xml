@@ -25,8 +25,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="back"
-                android:src="@drawable/ab_back" />
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_back_img"
+                android:onClick="back"/>
 
             <TextView
                 android:layout_width="match_parent"

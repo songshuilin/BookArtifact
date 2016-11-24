@@ -89,12 +89,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/btn_onclick"
                 android:text="追书" />
 
             <Button
-                android:textColor="#fff"
-                android:background="@drawable/btn_onclick"
+                android:textColor="#000"
                 android:gravity="center"
                 android:textSize="24sp"
                 android:id="@+id/song_community"
@@ -104,14 +102,13 @@
                 android:text="社区" />
 
             <Button
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:gravity="center"
                 android:textSize="24sp"
                 android:id="@+id/song_find"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/btn_onclick"
                 android:text="发现" />
         </LinearLayout>
 
@@ -122,7 +119,6 @@
 
     <!--侧滑的的view-->
     <android.support.design.widget.NavigationView
-        android:background="@drawable/background"
         android:id="@+id/nv_main_navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

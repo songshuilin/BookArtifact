@@ -18,8 +18,12 @@ import com.example.edu.bookartifact.ChatActivity;
 import com.example.edu.bookartifact.MusicActivity;
 import com.example.edu.bookartifact.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import event.NightMode;
 import zxing.activity.CaptureActivity;
 import utils.SharedUtil;
 
@@ -72,9 +76,11 @@ public class CommunityFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         if (view==null){
+            //注册evenbus
+            EventBus.getDefault().register(this);
             view = inflater.inflate(R.layout.community_layout, container, false);
             ButterKnife.bind(this, view);
             layMusic.setOnClickListener(listener);
@@ -88,9 +94,25 @@ public class CommunityFragment extends Fragment {
         if (parent != null) {
             parent.removeView(view);
         }
-        Log.e("TAG","MODE=="+SharedUtil.getInstance(getActivity()).get_NightMode());
+        if ("1".equals(SharedUtil.getInstance(getActivity()).get_NightMode())){
+            view.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            view.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
         return view;
     }
+
+    @Subscribe
+    public void changeMode(NightMode mode){
+        boolean isNight=mode.getMode_();
+        if (isNight){
+            view.setBackgroundColor(getResources().getColor(R.color.background_night));
+        }else {
+            view.setBackgroundColor(getResources().getColor(R.color.background_day));
+        }
+    }
+
+
     public static String info;
 
     private View.OnClickListener listener = new View.OnClickListener() {
