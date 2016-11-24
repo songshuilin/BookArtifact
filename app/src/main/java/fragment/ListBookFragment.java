@@ -24,14 +24,21 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.edu.bookartifact.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import adapter.RecyclerAdapter;
 import bean.NovelBean;
+import event.Save;
 import ui.NovelDescActivity;
 import utils.CrawlerData;
 import utils.DividerItemDecoration;
+import utils.SharedUtil;
+
+import static android.util.Log.i;
 
 
 /**
@@ -48,6 +55,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
     private AlertDialog dialog;
     private SwipeToLoadLayout swipeToLoadLayout;
     private String nextPath;
+    private boolean isSave=false;
     private  int next=1;
     Handler handler = new Handler() {
         @Override
@@ -88,16 +96,25 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
             }
         }
     };
+    @Subscribe
+    public void setIsSave(Save save){
+        if (save.isSave()){
+            adapter.notifyDataSetChanged();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         if (view == null) {
+            EventBus.getDefault().register(this);
+            isSave=getIsSave();
             view = inflater.inflate(R.layout.fragment_list_book, container, false);
             //String path= savedInstanceState.getString("path");
             Bundle bundle = getArguments();
             path = bundle.getString("path");
-            Log.i("SONG", "onCreateView:..... " + path);
+            i("SONG", "onCreateView:..... " + path);
             initView();
             dialog = new AlertDialog.Builder(getActivity()).create();
             dialog.setCancelable(false);
@@ -139,6 +156,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
         new Thread() {
             @Override
             public void run() {
+                isSave=getIsSave();
                 newList = CrawlerData.getNovelList(path);//上拉下一页的数据
                 oldList.addAll(newList);
 //                Message message = handler.obtainMessage();
@@ -158,8 +176,10 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
         new Thread() {
             @Override
             public void run() {
+                isSave=getIsSave();
                 List<NovelBean> nextNewList = CrawlerData.getNovelList(nextPath);
-                Log.i("TAGee", "run: "+nextPath);
+                i("TAGqq", "run" + isSave);
+                i("TAGee", "run: "+nextPath);
                 newList.addAll(nextNewList);
                 oldList.addAll(newList);
                 Message message = handler.obtainMessage();
@@ -203,7 +223,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
 
     @Override
     public void onStop() {
-        //       EventBus.getDefault().unregister(this);
+              EventBus.getDefault().unregister(this);
         super.onStop();
     }
 
@@ -214,9 +234,9 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
             public void run() {
 
                 if (oldList != null && newList != null) {
-                    Log.i("TAG", "run: .........." + newList.toString().equals(oldList.toString()));
+                    i("TAG", "run: .........." + newList.toString().equals(oldList.toString()));
                     if (oldList.toString().equals(newList.toString())) {
-                        Log.i("TAG", "handleMessage:................ ");
+                        i("TAG", "handleMessage:................ ");
                         Toast.makeText(getActivity(), "你这已是最新的啦！", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(), "刷新成功！", Toast.LENGTH_SHORT).show();
@@ -290,5 +310,13 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
 
         return null;
     }
+
+    public boolean getIsSave() {
+
+        return "1".equals(SharedUtil.getInstance(getActivity()).get_save());
+    }
+
+
+
 }
 

@@ -12,6 +12,7 @@
         android:id="@+id/lay_music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 本地音乐图标-->
@@ -33,7 +34,7 @@
         <!-- 下划线-->
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_music"
             android:layout_alignLeft="@id/tv_music"
             android:layout_marginTop="15dp"
@@ -72,7 +73,7 @@
         <!-- 下划线-->
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_discu"
             android:layout_alignLeft="@id/tv_discu"
             android:layout_marginTop="15dp"
@@ -136,7 +137,7 @@
         <!-- 下划线-->
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_help"
             android:layout_alignLeft="@id/tv_help"
             android:layout_marginTop="15dp"
@@ -168,7 +169,7 @@
         <!-- 下划线-->
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_gir"
             android:layout_alignLeft="@id/tv_gir"
             android:layout_marginTop="15dp"

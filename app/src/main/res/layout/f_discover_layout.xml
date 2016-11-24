@@ -10,14 +10,14 @@
         android:id="@+id/onclick_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_margin="10dp"
         android:gravity="center_vertical">
         <!-- 游戏中心图片展示-->
         <ImageView
             android:id="@+id/img1"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/home_find_game_center"/>
         <TextView
             android:id="@+id/tv_1"
@@ -27,13 +27,14 @@
             android:text="游戏中心"
             android:layout_marginLeft="20dp"
             android:gravity="center_vertical"
-            android:textSize="20sp"/>
+            android:textSize="18sp"
+            android:textColor="#000"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_1"
-            android:background="#aabbcc"
-            android:layout_marginTop="13dp"
+            android:background="#9A9496"
+            android:layout_marginTop="15dp"
             android:layout_alignLeft="@id/tv_1"/>
 
         <ImageView
@@ -51,9 +52,8 @@
         <!-- 咪咕阅读图片展示-->
         <ImageView
             android:id="@+id/img2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/home_find_migu"/>
         <TextView
             android:id="@+id/tv_2"
@@ -63,12 +63,13 @@
             android:text="咪咕阅读"
             android:layout_marginLeft="20dp"
             android:gravity="center_vertical"
-            android:textSize="20sp"/>
+            android:textSize="18sp"
+            android:textColor="#000"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_2"
-            android:background="#aabbcc"
+            android:background="#9A9496"
             android:layout_marginTop="15dp"
             android:layout_alignLeft="@id/tv_2"/>
 
@@ -87,9 +88,8 @@
         <!-- 一元夺宝图片展示-->
         <ImageView
             android:id="@+id/img3"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/home_find_oneyuan"/>
         <TextView
             android:id="@+id/tv_3"
@@ -99,12 +99,13 @@
             android:text="一元夺宝"
             android:layout_marginLeft="20dp"
             android:gravity="center_vertical"
-            android:textSize="20sp"/>
+            android:textSize="18sp"
+            android:textColor="#000"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_3"
-            android:background="#aabbcc"
+            android:background="#9A9496"
             android:layout_marginTop="15dp"
             android:layout_alignLeft="@id/tv_3"/>
 
@@ -123,9 +124,8 @@
         <!-- 情感热线图片展示-->
         <ImageView
             android:id="@+id/img4"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/homefind_qinggan"/>
         <TextView
             android:id="@+id/tv_4"
@@ -135,12 +135,13 @@
             android:text="情感热线"
             android:layout_marginLeft="20dp"
             android:gravity="center_vertical"
-            android:textSize="20sp"/>
+            android:textSize="18sp"
+            android:textColor="#000"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_below="@id/tv_4"
-            android:background="#aabbcc"
+            android:background="#9A9496"
             android:layout_marginTop="15dp"
             android:layout_alignLeft="@id/tv_4"/>
 

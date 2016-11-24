@@ -125,7 +125,7 @@ public class CrawlerData {
      * @param path
      * @return
      */
-    public static NovelDesc getNovel(String path) {
+    public static NovelDesc getNovel(String path,boolean isSave) {
         try {
             Document document = Jsoup.connect(path).get();
             //如果document 为null 则返回null
@@ -155,10 +155,15 @@ public class CrawlerData {
 
             Elements wrappers = document.getElementsByClass("wrapper");
             Elements focus_mains = wrappers.get(0).getElementsByClass("focus_main");
-            String novelImgPath = focus_mains.get(0).getElementsByClass("left").get(0)
-                    .getElementsByClass("fengmian")
-                    .get(0).getElementsByTag("img").attr("src");
-            novelDesc.setNovelImgPath(novelImgPath);
+            if (isSave){
+
+            }else {
+                String novelImgPath = focus_mains.get(0).getElementsByClass("left").get(0)
+                        .getElementsByClass("fengmian")
+                        .get(0).getElementsByTag("img").attr("src");
+                novelDesc.setNovelImgPath(novelImgPath);
+            }
+
 
             String novelContent = focus_mains.get(0).getElementsByClass("right")
                     .get(0).getElementsByClass("bbt_container").get(0)
