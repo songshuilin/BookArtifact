@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -51,6 +52,7 @@ public class ClickActivity extends Activity {
         content.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         //设置content自适应屏幕
         content.getSettings().setLoadWithOverviewMode(true);
+        //设置content的监听事件
         content.setOnScrollChangeListener(new ScrollWebView.OnScrollChangeListener() {
             @Override
             public void onPageEnd(int l, int t, int oldl, int oldt) {
@@ -68,17 +70,20 @@ public class ClickActivity extends Activity {
             public void onScrollChanged(int l, int t, int oldl, int oldt) {
                 //滑动中
                 lay_.setVisibility(View.GONE);
-                translate=new TranslateAnimation(0.0f,0.0f,0.0f,100.0f);
-                translate.setDuration(1000);
-                //translate.setFillAfter(true);
-                lay_.setAnimation(translate);
+//                if ()
+//                translate=new TranslateAnimation(0.0f,0.0f,0.0f,100.0f);
+//                translate.setDuration(1000);
+//                translate.setFillAfter(true);
+//                lay_.setAnimation(translate);
+
+               // content.setOnTouchListener(touchListener);
                 //触摸事件监听
 //                View.OnTouchListener touchListener = new View.OnTouchListener() {
 //                    @Override
 //                    public boolean onTouch(View view, MotionEvent motionEvent) {
 //                        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
 //                            lay_.requestDisallowInterceptTouchEvent(false);
-//                        } else {
+//                      } else {
 //                            lay_.requestDisallowInterceptTouchEvent(true);
 //                        }
 //                        switch (motionEvent.getAction()) {
@@ -99,7 +104,7 @@ public class ClickActivity extends Activity {
 //                        return true;
 //                    }
 //                };
-            }
+              }
         });
 
     }
