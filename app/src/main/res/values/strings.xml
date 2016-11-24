@@ -5,6 +5,7 @@
     <string name="bottom_send">发送</string>
     <string name="hello_blank_fragment">你好</string>
     <string name="ignore">跳过</string>
+    <string name="feedback">\t\t本追书神器是一款从网页获取数据的软件，比较耗流量，你可以选择不用，另外，如果想要优化本软件，可以到github下载源码，链接：https://github.com/songshuilin/BookArtifact ，欢迎提出意见。</string>
 
 
 </resources>

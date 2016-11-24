@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#ff0000">
+        android:background="#B63120">
 
         <!--返回按钮-->
         <Button

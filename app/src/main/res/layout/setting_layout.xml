@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ff0000"
+        android:background="#B63120"
         android:orientation="horizontal">
         <!--返回按钮-->
         <Button
@@ -39,58 +39,58 @@
         android:text="设置"/>
 
     <!--书架排序-->
-    <LinearLayout
-        android:id="@+id/lin_book_sort"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:padding="3dp"
-        android:layout_marginBottom="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:text="书架排序"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_sort_by"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="按更新时间"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ios_arrow"/>
-        </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/lin_book_sort"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:padding="3dp"-->
+        <!--android:layout_marginBottom="3dp"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="18sp"-->
+            <!--android:text="书架排序"/>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_sort_by"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="18sp"-->
+                <!--android:text="按更新时间"/>-->
+            <!--<ImageView-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/ios_arrow"/>-->
+        <!--</LinearLayout>-->
 
 
-    </LinearLayout>
-    <!--更新通知-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:padding="3dp"
-        android:layout_marginBottom="3dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:text="更新通知"/>
-        <Switch
-            android:id="@+id/sw_update_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <!--</LinearLayout>-->
+    <!--&lt;!&ndash;更新通知&ndash;&gt;-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:padding="3dp"-->
+        <!--android:layout_marginBottom="3dp"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="18sp"-->
+            <!--android:text="更新通知"/>-->
+        <!--<Switch-->
+            <!--android:id="@+id/sw_update_info"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
     <!--省流量模式（无头像）-->
     <LinearLayout
         android:layout_width="match_parent"
