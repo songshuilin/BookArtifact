@@ -55,8 +55,8 @@ public class ReadChapterActivity extends AppCompatActivity {
     private String content;
     private boolean isChanged = false;
     private String[] sizeName = {"小", "中", "大"};
-    private int whereOne;//设置字体大小的  item posiion
-    private int whereOneReadName;//发音人的 item posiion
+    private int whereOne=1;//设置字体大小的  item posiion
+    private int whereOneReadName=1;//发音人的 item posiion
     private String name;
     private String readname;
     private boolean isNight = false;
