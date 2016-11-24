@@ -111,6 +111,7 @@ public class NovelChapterFragment extends Fragment {
            mChapterContent.setTextColor(Color.parseColor("#ffffff"));
        }else {
            mLl.setBackgroundResource(R.drawable.textback);
+           mChapterContent.setTextColor(Color.parseColor("#000000"));
        }
     }
     @Override

@@ -124,7 +124,7 @@ public class SettingActivity extends Activity {
         }
         if ("0".equals(nickName)){
             ll_logout.setVisibility(View.GONE);
-            ((TextView)findViewById(R.id.tv_change)).setText("登陆");
+            ((TextView)findViewById(R.id.tv_change)).setText("登录");
         }
 
     }
@@ -165,12 +165,12 @@ public class SettingActivity extends Activity {
                     book_sort();
                     break;
                 case R.id.lin_disclaimer:
-                    Toast.makeText(SettingActivity.this, "免责声明", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SettingActivity.this, "免责声明", Toast.LENGTH_SHORT).show();
                     Intent intent_disclaimer = new Intent(SettingActivity.this, DisclaimerActivity.class);
                     startActivity(intent_disclaimer);
                     break;
                 case R.id.lin_join_us:
-                    Toast.makeText(SettingActivity.this, "加入我们", Toast.LENGTH_SHORT).show();//浏览器打开
+//                    Toast.makeText(SettingActivity.this, "加入我们", Toast.LENGTH_SHORT).show();//浏览器打开
                     //地址：http://www.lagou.com/center/company_493.html?speedShow=true&m=1
                     Intent intent_join_us = new Intent();
                     intent_join_us.setAction("android.intent.action.VIEW");
@@ -179,12 +179,12 @@ public class SettingActivity extends Activity {
                     startActivity(intent_join_us);
                     break;
                 case R.id.lin_feedback:
-                    Toast.makeText(SettingActivity.this, "意见反馈", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SettingActivity.this, "意见反馈", Toast.LENGTH_SHORT).show();
                     Intent intent_feedback=new Intent(SettingActivity.this,FeedBackActivity.class);
                     startActivity(intent_feedback);
                     break;
                 case R.id.lin_share_software:
-                    Toast.makeText(SettingActivity.this, "分享追书神器", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SettingActivity.this, "分享追书神器", Toast.LENGTH_SHORT).show();
                     Intent intent_share = new Intent(Intent.ACTION_SEND);
                     String uri="http://www.lagou.com/center/company_493.html?speedShow=true&m=1";
                     intent_share.setType("text/plain");
@@ -194,7 +194,6 @@ public class SettingActivity extends Activity {
                 //切换账号
                 case R.id.lin_change:
                     login();
-
                     break;
                 //注销账号
                 case R.id.lin_logout:
