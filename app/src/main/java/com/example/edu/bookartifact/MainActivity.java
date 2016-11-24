@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case 0x12345:
                     if (!isBack){
                         finish();
-                        SharedUtil.getInstance(MainActivity.this).put_saveflow("0");
+//                        SharedUtil.getInstance(MainActivity.this).put_saveflow("0");
                     }
                     isBack=false;
                     break;

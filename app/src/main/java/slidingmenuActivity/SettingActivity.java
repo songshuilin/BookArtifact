@@ -83,8 +83,8 @@ public class SettingActivity extends Activity {
 
     //初始化控件
     public void init_Setting() {
-        ll_book_sort = (LinearLayout) findViewById(R.id.lin_book_sort);
-        sw_update_info = (Switch) findViewById(R.id.sw_update_info);
+//        ll_book_sort = (LinearLayout) findViewById(R.id.lin_book_sort);
+//        sw_update_info = (Switch) findViewById(R.id.sw_update_info);
         sw_save_flow = (Switch) findViewById(R.id.sw_save_flow);
         ll_disclaimer = (LinearLayout) findViewById(R.id.lin_disclaimer);
         ll_join_us = (LinearLayout) findViewById(R.id.lin_join_us);
@@ -92,7 +92,7 @@ public class SettingActivity extends Activity {
         ll_share_software = (LinearLayout) findViewById(R.id.lin_share_software);
         ll_change= (LinearLayout) findViewById(R.id.lin_change);
         ll_logout= (LinearLayout) findViewById(R.id.lin_logout);
-        tv_book_by = (TextView) findViewById(R.id.tv_sort_by);//书架排序设置
+//        tv_book_by = (TextView) findViewById(R.id.tv_sort_by);//书架排序设置
         ll_setting= (LinearLayout) findViewById(R.id.ll_setting);
 
         //夜间模式
@@ -103,7 +103,7 @@ public class SettingActivity extends Activity {
         }
 
         //点击事件
-        ll_book_sort.setOnClickListener(clickListener);
+//        ll_book_sort.setOnClickListener(clickListener);
         ll_disclaimer.setOnClickListener(clickListener);
         ll_join_us.setOnClickListener(clickListener);
         ll_feedback.setOnClickListener(clickListener);
@@ -113,7 +113,7 @@ public class SettingActivity extends Activity {
 
         //Switch开关设置
         sw_save_flow.setOnCheckedChangeListener(checkChange);
-        sw_update_info.setOnCheckedChangeListener(checkChange);
+//        sw_update_info.setOnCheckedChangeListener(checkChange);
 
 
         sharedUtil = SharedUtil.getInstance(SettingActivity.this);
@@ -144,13 +144,13 @@ public class SettingActivity extends Activity {
                 case R.id.sw_save_flow:
                     save_flow(isChecked);//省流量模式 开/闭
                 break;
-                case R.id.sw_update_info:
-                    if (isChecked){
-                        Toast.makeText(SettingActivity.this,"更新打开",Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(SettingActivity.this,"更新关闭",Toast.LENGTH_SHORT).show();
-                    }
-                break;
+//                case R.id.sw_update_info:
+//                    if (isChecked){
+//                        Toast.makeText(SettingActivity.this,"更新打开",Toast.LENGTH_SHORT).show();
+//                    }else {
+//                        Toast.makeText(SettingActivity.this,"更新关闭",Toast.LENGTH_SHORT).show();
+//                    }
+//                break;
                 default:
                     break;
             }
@@ -163,9 +163,9 @@ public class SettingActivity extends Activity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.lin_book_sort:
-                    book_sort();
-                    break;
+//                case R.id.lin_book_sort:
+//                    book_sort();
+//                    break;
                 case R.id.lin_disclaimer:
 //                    Toast.makeText(SettingActivity.this, "免责声明", Toast.LENGTH_SHORT).show();
                     Intent intent_disclaimer = new Intent(SettingActivity.this, DisclaimerActivity.class);
