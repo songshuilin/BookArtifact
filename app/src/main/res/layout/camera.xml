@@ -11,8 +11,8 @@
 
     <zxing.view.ViewfinderView
         android:id="@+id/viewfinder_view"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
