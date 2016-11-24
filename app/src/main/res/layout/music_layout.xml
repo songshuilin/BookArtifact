@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg11">
     <include layout="@layout/head_layout"/>
     <!-- 中间音乐列表展示-->
     <ListView
@@ -11,15 +12,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:dividerHeight="1dp"
-        android:divider="#9A9496"
-        android:background="@drawable/bg_snow_blur">
+        android:divider="#9A9496">
     </ListView>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:background="#A39F9E">
+        android:padding="4dp">
         <!-- 起始时间-->
         <TextView
             android:id="@+id/start_time"
@@ -58,7 +57,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#6A6A68">
+        >
         <!-- 按列表循环播放按钮-->
         <Button
             android:id="@+id/loop"
