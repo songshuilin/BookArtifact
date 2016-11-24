@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import bean.NovelBean;
+import utils.SharedUtil;
+
 /**
  * 作者  ：宋水林
  * 时间 ：2016-11-15
@@ -49,9 +51,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHodl
         holder.novelAuthor.setText("作者 :"+list.get(position).getNovelAuthor());
         holder.novelTime.setText(list.get(position).getNovelTime());
         holder.novelTitle.setText(list.get(position).getNovelTitle());
-        Picasso.with(context).load(list.get(position).getNovelImg())
-                .placeholder(R.drawable.default_novel)
-                .into(holder.novelImg);
+        if ("1".equals(SharedUtil.getInstance(context).get_save())){
+          holder.novelImg.setImageResource(R.drawable.default_novel);
+        }else {
+            Picasso.with(context).load(list.get(position).getNovelImg())
+                    .placeholder(R.drawable.default_novel)
+                    .into(holder.novelImg);
+        }
+
         holder.itemView.setTag(list.get(position));//为item设置tag
     }
 

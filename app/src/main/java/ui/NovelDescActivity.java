@@ -30,6 +30,7 @@ public class NovelDescActivity extends AppCompatActivity {
     private NovelDesc novelDesc;
     private AlertDialog dialog;
     private LinearLayout ll_novel_desc;
+    private boolean isSave=false;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -50,6 +51,7 @@ public class NovelDescActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isSave=getIsSave();
         //这里用到了 数据绑定框架，databonding,
         novelDescBinding = DataBindingUtil.setContentView(this, R.layout.activity_novel_desc);
         String novelPath = getIntent().getStringExtra("novelPath");
@@ -65,6 +67,7 @@ public class NovelDescActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setMessage("拼命加载中...");
         dialog.show();
+
     }
 
     /**
@@ -83,7 +86,8 @@ public class NovelDescActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                NovelDesc novelDesc = CrawlerData.getNovel(path);
+
+                NovelDesc novelDesc = CrawlerData.getNovel(path,isSave);
                 Message message = handler.obtainMessage();
                 message.obj = novelDesc;
                 message.what = 0x123;
@@ -116,4 +120,7 @@ public class NovelDescActivity extends AppCompatActivity {
     }
 
 
+    public boolean getIsSave() {
+        return "1".equals(SharedUtil.getInstance(this).get_save());
+    }
 }
