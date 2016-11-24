@@ -159,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mUsernameImg = (ImageView) findViewById(R.id.usernameImg);
         mDl = (DrawerLayout) findViewById(R.id.dl);
 
-
         ll_content= (LinearLayout) findViewById(R.id.ll_book);
 
         if (sharedUtil.get_NightMode().toString().equals("0")){
