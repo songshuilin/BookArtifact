@@ -372,12 +372,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent_chen_localBooks);
                 mDl.closeDrawers();//关闭侧滑栏
                 break;
-            case R.id.wifiPassBook:
-                Toast.makeText(MainActivity.this, "WIFI传书", Toast.LENGTH_SHORT).show();
-                Intent intent_chen_wifiTranport = new Intent(MainActivity.this, WifiTranportActivity.class);
-                startActivity(intent_chen_wifiTranport);
-                mDl.closeDrawers();//关闭侧滑栏
-                break;
+//            case R.id.wifiPassBook:
+//                Toast.makeText(MainActivity.this, "WIFI传书", Toast.LENGTH_SHORT).show();
+//                Intent intent_chen_wifiTranport = new Intent(MainActivity.this, WifiTranportActivity.class);
+//                startActivity(intent_chen_wifiTranport);
+//                mDl.closeDrawers();//关闭侧滑栏
+//                break;
             case R.id.feedback:
 //                Toast.makeText(MainActivity.this, "意见反馈", Toast.LENGTH_SHORT).show();
                 Intent intent_chen_feedback = new Intent(MainActivity.this, FeedBackActivity.class);
@@ -417,6 +417,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+        Log.e("TAG",",,,,,,,,,,,");
         return true;
     }
 

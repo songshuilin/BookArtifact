@@ -55,7 +55,7 @@ public class ReadLocalBooksActivity extends Activity {
 
         mCurPageBitmap = Bitmap.createBitmap(width_int, height_int, Bitmap.Config.ARGB_8888);
         mNextPageBitmap = Bitmap
-                .createBitmap(width_int, height_int, Bitmap.Config.ARGB_8888);
+                .createBitmap(width_int, height_int, Bitmap.Config.ARGB_4444);
 
         mCurPageCanvas = new Canvas(mCurPageBitmap);
         mNextPageCanvas = new Canvas(mNextPageBitmap);

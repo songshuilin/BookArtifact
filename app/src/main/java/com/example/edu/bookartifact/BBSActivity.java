@@ -51,7 +51,8 @@ public class BBSActivity extends Activity implements OnRefreshListener {
     ImageButton right;
     //
 //    public static final String IP = "192.168.43.103";
-    public static final String IP = "192.168.1.115";
+//    public static final String IP = "192.168.1.115";
+    public static final String IP = "192.168.1.119";
 
     @BindView(R.id.tv_topic_error)
     TextView tvTopicError;

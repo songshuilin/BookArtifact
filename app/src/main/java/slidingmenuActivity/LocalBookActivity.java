@@ -67,9 +67,9 @@ public class LocalBookActivity extends Activity {
         name = new ArrayList();
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
-            File path = Environment.getExternalStorageDirectory();// 获得SD卡路径
+//            File path = Environment.getExternalStorageDirectory();// 获得SD卡路径
             // File path = new File("/mnt/sdcard/");
-            files = path.listFiles();// 读取
+//            files = path.listFiles();// 读取
             Loading();//对话框显示
             myThread_();//查找开启的线程
         }
@@ -94,7 +94,7 @@ public class LocalBookActivity extends Activity {
             @Override
             public void run() {
                 super.run();
-                getFileName(files);
+                GetFilesName(Environment.getExternalStorageDirectory()+"/",".txt",true);
                 Message message=handler.obtainMessage();
                 message.what=0123;
                 handler.sendMessage(message);
@@ -121,29 +121,49 @@ public class LocalBookActivity extends Activity {
         finish();
     }
 
-    private void getFileName(File[] files) {
-        if (files != null) {// 先判断目录是否为空，否则会报空指针
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    getFileName(file.listFiles());
-                } else {
-                    String fileName = file.getName();
-                    if (fileName.endsWith(".txt")) {
-                        String abs_path=file.getAbsolutePath().toString();//绝对路径
-                        String con=readSDFile(file.getAbsolutePath().toString());//读取文本内容
-                        String filename_=fileName.substring(0, fileName.lastIndexOf("."))+".txt";//文件名称
-//                        Log.e("TAG","abs_path="+abs_path);//路径
-//                        Log.e("TAG","con="+con);
-//                        Log.e("TAG","filename="+filename_);
-                        LocalBooksBean localBooksBean=new LocalBooksBean(abs_path,con,filename_);
-                        list_.add(localBooksBean);
-                        Log.e("TAG","list_="+list_.toString());
-
-                    }
-                }
-            }
+    public void GetFilesName(String Path, String Extension,boolean IsIterative) // 搜索目录，扩展名(判断的文件类型的后缀名)，是否进入子文件夹
+    {
+        File[] files = new File(Path).listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File f = files[i];
+            if (f.isFile()) {
+                if (f.getPath()  .substring(f.getPath().length() - Extension.length()).equals(Extension)){
+                    String abs_path=f.getPath();//绝对路径
+                    String filename_=f.getName();//文件名称
+                    String con_=readSDFile(f.getAbsolutePath().toString());
+                    LocalBooksBean localBooksBean=new LocalBooksBean(abs_path,con_,filename_);
+                    list_.add(localBooksBean);
+                } // 判断扩展名
+                if (!IsIterative)
+                    break;  //如果不进入子集目录则跳出
+            } else if (f.isDirectory() && f.getPath().indexOf("/.") == -1) // 忽略点文件（隐藏文件/文件夹）
+                GetFilesName(f.getPath(), Extension, IsIterative);  //这里就开始递归了
         }
     }
+
+//    private void getFileName(File[] files) {
+//        if (files != null) {// 先判断目录是否为空，否则会报空指针
+//            for (File file : files) {
+//                if (file.isDirectory()) {
+//                    getFileName(file.listFiles());
+//                } else {
+//                    String fileName = file.getName();
+//                    if (fileName.endsWith(".txt")) {
+//                        String abs_path=file.getAbsolutePath().toString();//绝对路径
+//                        String con=readSDFile(file.getAbsolutePath().toString());//读取文本内容
+//                        String filename_=fileName.substring(0, fileName.lastIndexOf("."))+".txt";//文件名称
+////                        Log.e("TAG","abs_path="+abs_path);//路径
+////                        Log.e("TAG","con="+con);
+////                        Log.e("TAG","filename="+filename_);
+//                        LocalBooksBean localBooksBean=new LocalBooksBean(abs_path,con,filename_);
+//                        list_.add(localBooksBean);
+//                        Log.e("TAG","list_="+list_.toString());
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 
     public String readSDFile(String filepath) {
@@ -170,7 +190,7 @@ public class LocalBookActivity extends Activity {
     private AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(LocalBookActivity.this,"点击了我",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(LocalBookActivity.this,"点击了我",Toast.LENGTH_SHORT).show();
             LocalBooksBean bean=(LocalBooksBean)parent.getAdapter().getItem(position);
             Log.e("TAG","list_name="+bean.getName());
             Log.e("TAG","list_content="+bean.getContent());
