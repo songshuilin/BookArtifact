@@ -1,6 +1,7 @@
 package slidingmenuActivity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
@@ -64,6 +65,7 @@ public class LocalBookActivity extends Activity {
         }
         lv_ = (ListView) findViewById(R.id.listview);
         lv_.setOnItemClickListener(itemClickListener);//设置点击事件
+        lv_.setOnItemLongClickListener(longClick);//长按删除事件
         name = new ArrayList();
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
@@ -206,6 +208,37 @@ public class LocalBookActivity extends Activity {
             Intent intent_ReadLocalBook=new Intent(LocalBookActivity.this,ReadLocalBooksActivity.class);
             intent_ReadLocalBook.putExtra("path",path_abs);
             startActivity(intent_ReadLocalBook);
+        }
+    };
+
+    //长按删除事件
+    private AdapterView.OnItemLongClickListener longClick=new AdapterView.OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            final LocalBooksBean bean=(LocalBooksBean)parent.getAdapter().getItem(position);
+            Log.e("TAG","list_name="+bean.getName());
+            Log.e("TAG","list_content="+bean.getContent());
+            Log.e("TAG","list_path="+bean.getPath());
+            AlertDialog.Builder builder=new AlertDialog.Builder(LocalBookActivity.this);
+            builder.setMessage("确定删除吗?");
+            builder.setTitle("警告");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    File file=new File(bean.getPath());
+                    file.delete();
+                    list_.remove(bean);
+                    adapter.notifyDataSetChanged();
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+            return true;
         }
     };
 

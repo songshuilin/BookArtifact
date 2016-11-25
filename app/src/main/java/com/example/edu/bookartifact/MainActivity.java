@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 super.onTabSelected(tab);
-                Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 

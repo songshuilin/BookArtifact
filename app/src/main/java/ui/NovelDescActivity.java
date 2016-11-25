@@ -103,7 +103,7 @@ public class NovelDescActivity extends AppCompatActivity {
      */
     public void back(View view){
         finish();
-        Toast.makeText(NovelDescActivity.this,"你好啊",Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(NovelDescActivity.this,"你好啊",Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -111,7 +111,7 @@ public class NovelDescActivity extends AppCompatActivity {
      * @param view
      */
     public void chapterList(View view){
-        Toast.makeText(NovelDescActivity.this,"章节列表",Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(NovelDescActivity.this,"章节列表",Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(this,NovelChapterListActivity.class);
         intent.putExtra("path",novelDesc.getNvlelDirectorypath());
         intent.putExtra("author",novelDesc.getNovelAuthor());

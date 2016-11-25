@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookArtifact</string>
+    <string name="app_name">追书神器</string>
     <string name="answerName">林妹妹</string>
     <string name="answer_helloword">hi，想跟我唠嗑唠嗑？</string>
     <string name="bottom_send">发送</string>

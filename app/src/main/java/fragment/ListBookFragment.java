@@ -84,7 +84,7 @@ public class ListBookFragment extends Fragment implements OnRefreshListener, OnL
                     adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
                         @Override
                         public void onItemClick(View view, NovelBean novel) {
-                            Toast.makeText(getActivity(), novel.getNovelTitle(), Toast.LENGTH_SHORT).show();
+                    //        Toast.makeText(getActivity(), novel.getNovelTitle(), Toast.LENGTH_SHORT).show();
 //                            NovelDesc novelDesc= CrawlerData.getNovel(novel.getNovelPath());
 //                            Log.i("TAG", "onItemClick: "+novelDesc);
                             Intent intent = new Intent(getActivity(), NovelDescActivity.class);

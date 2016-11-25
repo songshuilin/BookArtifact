@@ -127,7 +127,7 @@ public class NovelChapterListActivity extends AppCompatActivity {
      * @param view
      */
     public void back(View view) {
-        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
         finish();
     }
 

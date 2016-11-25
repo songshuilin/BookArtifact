@@ -33,7 +33,7 @@ public class BookPageFactory {
 	private int m_mbBufLen = 0;
 	private int m_mbBufBegin = 0;
 	private int m_mbBufEnd = 0;
-	private String m_strCharsetName = "UTF-8";//编码格式
+	private String m_strCharsetName = "GBK";//编码格式
 	private Bitmap m_book_bg = null;
 	private int mWidth;
 	private int mHeight;
