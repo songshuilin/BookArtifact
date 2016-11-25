@@ -112,25 +112,30 @@ public class ClickActivity extends Activity {
         switch (DiscoverFragment.flag) {
             case 1:
                 tv_head.setText("游戏中心");
-                content.loadUrl("http://zssq.open.7724.com/");
+                uri="http://zssq.open.7724.com/";
+                content.loadUrl(uri);
                 content.setWebViewClient(new Client());
                 break;
             case 2:
                 tv_head.setText("咪咕阅读");
-                content.loadUrl("http://wap.cmread.com/r/p/index.jsp;jsessionid=0CE65615AE6E30F8EED46E8283B5E498.8ngFwlxGA.2.0?sqId=CP&dataSrcId=&vt=3&dataSrcId=&sqId=CP");
+                uri="http://wap.cmread.com/r/p/index.jsp;jsessionid=0CE65615AE6E30F8EED46E8283B5E498.8ngFwlxGA.2.0?sqId=CP&dataSrcId=&vt=3&dataSrcId=&sqId=CP";
+                content.loadUrl(uri);
                 content.setWebViewClient(new Client());
                 break;
             case 3:
                 tv_head.setText("一元夺宝");
-                content.loadUrl("http://m.1.163.com/?from=baidu_mbrand");
+                uri="http://m.1.163.com/?from=baidu_mbrand";
+                content.loadUrl(uri);
                 content.setWebViewClient(new Client());
                 break;
             case 4:
                 tv_head.setText("情感问答");
-                content.loadUrl("http://www.yidianling.com/ask");
+                uri="http://www.yidianling.com/ask";
+                content.loadUrl(uri);
                 content.setWebViewClient(new Client());
                 break;
         }
+
     }
 
     //Web视图
@@ -176,7 +181,7 @@ public class ClickActivity extends Activity {
                     Intent intent_share = new Intent(Intent.ACTION_SEND);
                    // String uri="http://www.lagou.com/center/company_493.html?speedShow=true&m=1";
                     intent_share.setType("text/plain");
-                    intent_share.putExtra(Intent.EXTRA_TEXT, "我正在使用追书神器看小说，下载地址："+uri);
+                    intent_share.putExtra(Intent.EXTRA_TEXT, "下载地址："+uri);
                     startActivity(intent_share);
                     break;
             }
