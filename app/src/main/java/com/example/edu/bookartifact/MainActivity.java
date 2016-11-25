@@ -417,6 +417,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+        Log.e("TAG",",,,,,,,,,,,");
         return true;
     }
 
